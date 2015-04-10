@@ -1,5 +1,20 @@
+//AUTHORS: Zack
+
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href="#") Home
+        li
+          a(href="/login") Sign In 
+      h3.text-muted CryptoBook
+
+    #descrwription.jumbotron
+      h1#webTitle CryptoBook 
+      p CryptoBook is a super secure webiste
+
+    div.footer
+      p CryptoBook, April 2015

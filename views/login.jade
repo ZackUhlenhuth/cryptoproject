@@ -1,0 +1,38 @@
+//AUTHOR: Zack
+
+extends layout
+
+block content
+  .container
+    div.header
+      ul.nav.nav-pills.pull-right
+        li
+          a(href="/") Home
+        li.active
+          a(href="#") Sign In 
+      h3.text-muted CryptoBook
+
+    div.row
+      div.col-lg-6
+        form#loginform.page-form(name="loginuser", role="form", method="post", action="/login/")
+          .form-group
+            label(for="exampleUserName") User Name
+            input#loginName.form-control(name="username", placeholder="Enter Username")
+          .form-group
+            label(for="examplePassword") Password
+            input#loginPass.form-control(name="password", type="password", placeholder="Enter Password")
+          button#loginButton.btn.btn-primary(type="submit") Log In
+      div.col-lg-6
+        form#registerform.page-form(name="adduser", role="form", method="post", action="/login/new")
+          .form-group
+            label(for="exampleUserName") User Name
+            input#usernameInput.form-control(name="username", placeholder="Enter Username")
+          .form-group
+            label(for="examplePassword") Password
+            input.form-control(name="password", type="password", placeholder="Enter Password")
+          .form-group
+            label(for="exampleConfirmPassword") Confirm Password
+            input#passInput.form-control(name="confirmpassword", type="password", placeholder="Enter Password")
+          button#signupButton.btn.btn-success(type="submit") Add User!
+    div.footer
+      p CryptoBook, April 2015
