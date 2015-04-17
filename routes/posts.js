@@ -1,16 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var posts = require('../controllers/posts');
+var isAuthorized = require('../utils/auth');
 
 /* GET users listing. */
-router.get('/:id', posts.show);
+router.get('/:id', isAuthorized, posts.show);
 
-router.get('/', posts.showAll);
+router.get('/', isAuthorized, posts.showAll);
 
-router.post('/', posts.create);
+router.post('/', isAuthorized, posts.create);
 
-router.put('/:id', posts.edit);
+router.put('/:id', isAuthorized, posts.edit);
 
-router.delete('/:id', posts.delete);
+router.delete('/:id', isAuthorized, posts.delete);
 
 module.exports = router;

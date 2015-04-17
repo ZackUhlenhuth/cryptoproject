@@ -1,0 +1,25 @@
+extends layout
+
+block header
+    script(type='text/javascript', src='/javascripts/test.js')
+
+block content
+    .container
+        .row
+            .form-group
+                label.col-sm-2.control-label(for="method") Method
+                .col-sm-10
+                    input.form-control#method(type="text")
+            .form-group
+                label.col-sm-2.control-label(for="method") URL
+                .col-sm-10
+                    input.form-control#url(type="text")
+                    p 
+                        strong URL FORMAT: 
+                        span#urlFormat 
+            .form-group
+                label.col-sm-2.control-label(for="method") Data
+                .col-sm-10
+                    textarea#data.form-control(rows="6")
+            button#submit.btn.btn-primary Submit
+            pre#result

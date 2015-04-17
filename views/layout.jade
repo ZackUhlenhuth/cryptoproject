@@ -4,9 +4,11 @@ doctype html
 html
   head
     title= title
-    //All pages should import these
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js')
+    script(src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js')
+    script(type='text/javascript', src='/javascripts/bootstrap.min.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
-    script(src='/javascripts/bootstrap.min.js')
+    block header
   body
     block content

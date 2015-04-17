@@ -11,7 +11,8 @@ router.post('/', function(req, res) {
 		if (err) return console.log(err);
 		if (user != null) {
 			if (user.password == req.body.password) {
-				req.session.userId = user._id;
+				req.session.user = user;
+				console.log(user);
 				res.redirect('/users/' + user._id);
 			}
 			else {

@@ -20,6 +20,7 @@ app.set('view engine', 'jade');
 var login = require('./routes/login');
 var users = require('./routes/users')
 var routes = require('./routes/index');
+var posts = require('./routes/posts');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -27,12 +28,13 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ secret: 'secret', resave: true, saveUninitialized: true })); // session secret
+app.use(session({ secret: 'crypt0pr0j3ct', resave: true, saveUninitialized: true })); // session secret
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/login', login);
+app.use('/posts', posts);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
