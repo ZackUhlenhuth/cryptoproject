@@ -1,0 +1,25 @@
+/*
+Errno::ENOENT: No such file or directory - style.scss
+
+Backtrace:
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:482:in `read'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:482:in `update_stylesheet'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:209:in `each'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/lib/sass/plugin/compiler.rb:293:in `watch'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/lib/sass/plugin.rb:108:in `method_missing'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:370:in `watch_or_update'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/lib/sass/exec/sass_scss.rb:50:in `process_result'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/lib/sass/exec/base.rb:52:in `parse'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/lib/sass/exec/base.rb:19:in `parse!'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/lib/ruby/gems/2.0.0/gems/sass-3.4.9/bin/sass:13:in `<top (required)>'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/bin/sass:23:in `load'
+/Users/rachelwang1994/.rvm/rubies/ruby-2.0.0-p353/bin/sass:23:in `<main>'
+/Users/rachelwang1994/.rvm/gems/ruby-2.0.0-p353@global/bin/ruby_executable_hooks:15:in `eval'
+/Users/rachelwang1994/.rvm/gems/ruby-2.0.0-p353@global/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Errno::ENOENT: No such file or directory - style.scss"; }

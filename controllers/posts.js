@@ -6,13 +6,13 @@ var posts = {};
 posts.show = function(req, res) {
     Post.find({
         author: req.session.user._id,
-        _id: req.params.postId
+        _id: req.params.id
     }, function(err, post) {
         if (err) {
             res.status(err.statusCode || 500).send(err);
             return;
         }
-        res.status(200).send(post);
+        res.status(200).send(post[0]);
     });
 }
 
@@ -53,7 +53,7 @@ posts.create = function(req, res) {
 }
 
 posts.edit = function(res, res) {
-    Post.edit(req.params.postId, req.session.user._id, req.body, function(err, post) {
+    Post.edit(req.params.id, req.session.user._id, req.body, function(err, post) {
         if (err) {
             return res.status(err.statusCode || 500).send(err);
         }
@@ -62,7 +62,7 @@ posts.edit = function(res, res) {
 }
 
 posts.delete = function(req, res) {
-    Post.delete(req.params.postId, req.session.user._id, function(err, response) {
+    Post.delete(req.params.id, req.session.user._id, function(err, response) {
         if (err) {
             res.status(err.statusCode || 500).send(err);
             return;

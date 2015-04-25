@@ -11,4 +11,8 @@ router.get('/test', isAuthorized, function(req, res) {
   res.render('test', { title: 'Test' });
 });
 
+router.get('/main', isAuthorized, function(req, res) {
+    res.render('posts', {title: 'CryptoBook'});
+})
+
 module.exports = router;

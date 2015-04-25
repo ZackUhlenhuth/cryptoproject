@@ -13,7 +13,7 @@ router.post('/', function(req, res) {
 			if (user.password == req.body.password) {
 				req.session.user = user;
 				console.log(user);
-				res.redirect('/users/' + user._id);
+				res.redirect('/main');
 			}
 			else {
 				res.render('login', { title: 'Log In' , error : true});
@@ -58,7 +58,7 @@ router.post('/new', function(req, res) {
 /** GET for rendering the page */
 router.get('/', function(req, res) {
 	if (req.session.userId) {
-		res.redirect('/users/');
+		res.redirect('/main');
 	} else {
 		res.render('login', { title: 'Log In'});
 	}
