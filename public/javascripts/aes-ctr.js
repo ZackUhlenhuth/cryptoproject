@@ -4,7 +4,7 @@
 
 /* jshint node:true *//* global define, escape, unescape, btoa, atob */
 'use strict';
-if (typeof module!='undefined' && module.exports) var Aes = require('./aes'); // CommonJS (Node.js)
+//if (typeof module!='undefined' && module.exports) var Aes = require('./aes'); // CommonJS (Node.js)
 
 
 /**

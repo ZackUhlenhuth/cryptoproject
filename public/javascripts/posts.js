@@ -5,9 +5,10 @@ $(document).ready(function() {
     // set form submit actions
     $("#saveMessage").click(function() {
         var password = $('#messagePassword').val();
-        var content = $('#messageContent').val();
+        var plaintext = $('#messageContent').val();
         var title = $('#messageTitle').val();
-        var data = {"title": title, "content": content};
+        var ciphertext = Aes.Ctr.encrypt(plaintext, password, 256);
+        var data = {"title": title, "content": ciphertext};
         $.ajax({
             url: "/posts/",
             type: 'POST',
