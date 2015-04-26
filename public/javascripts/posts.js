@@ -50,4 +50,20 @@ $(document).ready(function() {
             }
         });
     });
+
+    $("#search").keydown(function(e) {
+        showSearchResults();
+    });
+
+    $("#search-submit").on("click", function(e) {
+        showSearchResults();
+    });
+
+    var showSearchResults = function() {
+        var regExp = new RegExp($("#search").val(), 'i');
+        $(".post-min").hide();
+        var results = $(".post-min").filter(function() {
+            return regExp.test($(this).text());
+        }).show();
+    }
 });
