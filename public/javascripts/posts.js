@@ -4,17 +4,16 @@ $(document).ready(function() {
 
     // set form submit actions
     $("#saveMessage").click(function() {
-        var data = {};
-        var inputs = $('#dialogForm').serializeArray();
-        $.each(inputs, function(index, input) {
-            data[input.name] = input.value;
-        });
+        var password = $('#messagePassword').val();
+        var content = $('#messageContent').val();
+        var title = $('#messageTitle').val();
+        var data = {"title": title, "content": content};
         $.ajax({
             url: "/posts/",
             type: 'POST',
             data: data
         }).done(function(res) {
-            $("#dialog").dialog("close");
+            alert("hi");
         });
         return false;
     });
