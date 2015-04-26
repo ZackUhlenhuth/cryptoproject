@@ -5,7 +5,8 @@ $(document).ready(function() {
     // set form submit actions
     $("#saveMessage").click(function() {
         var password = $('#messagePassword').val();
-        var plaintext = $('#messageContent').val();
+        // var plaintext = $('#messageContent').val();
+        var plaintext = $('#messageContent').get(0).innerHTML;
         var title = $('#messageTitle').val();
         var ciphertext = Aes.Ctr.encrypt(plaintext, password, 256);
         var data = {"title": title, "content": ciphertext};
