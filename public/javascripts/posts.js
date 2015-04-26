@@ -1,4 +1,23 @@
-(function() {
+$(document).ready(function() {
+
+    $("button.createMessage").click(open);
+
+    // set form submit actions
+    $("#saveMessage").click(function() {
+        var data = {};
+        var inputs = $('#dialogForm').serializeArray();
+        $.each(inputs, function(index, input) {
+            data[input.name] = input.value;
+        });
+        $.ajax({
+            url: "/posts/",
+            type: 'POST',
+            data: data
+        }).done(function(res) {
+            $("#dialog").dialog("close");
+        });
+        return false;
+    });
 
     $.ajax({
         url: '/posts',
@@ -31,4 +50,4 @@
             }
         });
     });
-})();
+});

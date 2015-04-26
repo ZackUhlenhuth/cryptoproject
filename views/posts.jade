@@ -8,3 +8,27 @@ block content
         .row
             .col-sm-6#left-pane
             .col-sm-6#right-pane
+        button.btn.btn-primary.btn-lg.createMessage(data-toggle="modal" data-target="#myModal") Create Message
+
+
+        div#myModal.modal.fade
+            div.modal-dialog
+                    div.modal-content
+                        div.modal-header
+                            button.close(type="button", data-dismiss="modal")
+                                span(aria-hidden="true") &times;
+                            h4.modal-title Create Secret Message
+                        div.modal-body
+                            form#dialogForm.form(role="form")
+                                div.form-group
+                                    label(for="title") Title  
+                                    input#messageTitle.form-control(type='text', name='title', placeholder="Title of Message", tabindex="-1")
+                                div.form-group
+                                    label(for="content") Content  
+                                    textarea#messageContent.form-control(type='text', name='content', placeholder="Secret Content", tabindex="-1")
+                                div.form-group
+                                    label(for="password") Message  
+                                    input#messagePassword.form-control(type='text', name='password', placeholder="Password (Remember This)", tabindex="-1")
+                        div.modal-footer
+                            button.btn.btn-default(data-dismiss="modal") close
+                            button#saveMessage.btn.btn-primary Save Message
