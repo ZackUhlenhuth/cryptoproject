@@ -4,14 +4,13 @@ block header
     script(src='/javascripts/posts.js')
 
 block content
+    include _menu
     .container
         .row
             .col-sm-6#left-pane
             .col-sm-6#right-pane
-        button.btn.btn-primary.btn-lg.createMessage(data-toggle="modal" data-target="#myModal") Create Message
 
-
-        div#myModal.modal.fade
+        div#createPost.modal.fade
             div.modal-dialog
                     div.modal-content
                         div.modal-header

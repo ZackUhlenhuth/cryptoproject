@@ -1,5 +1,8 @@
+@import '_constants';
+
 body {
     background-color: #eee;
+    padding-top: 70px;
 
     .post-min, .post-full {
         background-color: #fff;
@@ -7,4 +10,17 @@ body {
         margin: 5px;
     }
 
+    .tag {
+      color: #fff;
+      font-size: .8em;
+      margin: 5px;
+      background-color: $dark;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    .subtext {
+        color: #bbb;
+        font-size: .8em;
+    }
 }

@@ -16,7 +16,7 @@ postSchema.method('edit', function(editObj, callback) {
     this.set('title', editObj.title || this.title);
     this.set('content', editObj.content || this.content);
     this.set('hint', editObj.hint || this.hint);
-    this.set('data', moment());
+    this.set('date', moment());
     // merge tags    
     this.save(function(err, post) {
         return callback(err, post);

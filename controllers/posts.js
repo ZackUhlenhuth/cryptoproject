@@ -7,18 +7,20 @@ posts.show = function(req, res) {
     Post.find({
         author: req.session.user._id,
         _id: req.params.id
-    }, function(err, post) {
+    }).populate('author', 'username')
+    .exec(function(err, posts) {
         if (err) {
             res.status(err.statusCode || 500).send(err);
             return;
         }
-        res.status(200).send(post[0]);
+        res.status(200).send(posts[0]);
     });
 }
 
 posts.showAll = function(req, res) {
-    console.log(req.session.user);
-    Post.find({author: req.session.user._id}, function(err, posts) {
+    Post.find({author: req.session.user._id}, null, {sort: {date: -1}})
+    .populate('author', 'username')
+    .exec(function(err, posts) {
         if (err) {
             res.status(err.statusCode || 500).send(err);
             return;
@@ -32,7 +34,7 @@ posts.create = function(req, res) {
         author: req.session.user._id,
         title: req.body.title,
         content: req.body.content,
-        tags: req.body.tags,
+        tags: req.body['tags[]'],
         date: moment(),
         hint: req.body.hint,
     };

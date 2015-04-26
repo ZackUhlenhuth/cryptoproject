@@ -1,4 +1,9 @@
 <div id="post-{{_id}}" class="post-min" data-post-id="{{_id}}">
     <h3>{{title}}</h3>
-    <p>{{tags}}</p>
+    <div>
+        {{#each tags}}
+            {{> tag}}
+        {{/each}}
+    </div>
+    <p class="subtext">Posted {{formatDate date}} by {{author.username}}</p>
 </div>

@@ -1,6 +1,10 @@
 Handlebars.registerPartial('post-full', Handlebars.templates['post-full']);
 Handlebars.registerPartial('post-min', Handlebars.templates['post-min']);
+Handlebars.registerPartial('tag', Handlebars.templates['tag']);
 
+Handlebars.registerHelper('formatDate', function(date) {
+    return moment(date).fromNow();
+});
 
 // Load template into entire page
 var loadPage = function(template, data) {

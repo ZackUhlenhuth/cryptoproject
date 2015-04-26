@@ -1,8 +1,19 @@
 body {
-  background-color: #eee; }
+  background-color: #eee;
+  padding-top: 70px; }
   body .post-min, body .post-full {
     background-color: #fff;
     padding: 10px;
     margin: 5px; }
+  body .tag {
+    color: #fff;
+    font-size: .8em;
+    margin: 5px;
+    background-color: #1A237E;
+    padding: 5px;
+    border-radius: 5px; }
+  body .subtext {
+    color: #bbb;
+    font-size: .8em; }
 
 /*# sourceMappingURL=style.css.map */

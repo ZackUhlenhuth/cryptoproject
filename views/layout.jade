@@ -4,14 +4,16 @@ doctype html
 html
   head
     title= title
-    script(src='/javascripts/aes.js')
-    script(src='/javascripts/aes-ctr.js')
-    script(src='/javascripts/jquery-1.11.1.min.js')
-    script(src='/javascripts/jquery-ui.min.js')
-    script(type='text/javascript', src='/javascripts/bootstrap.min.js')
-    script(src="/javascripts/handlebars.runtime.js")
+    script(src='/javascripts/third_party/aes.js')
+    script(src='/javascripts/third_party/aes-ctr.js')
+    script(src='/javascripts/third_party/jquery-1.11.1.min.js')
+    script(src='/javascripts/third_party/jquery-ui.min.js')
+    script(type='text/javascript', src='/javascripts/third_party/bootstrap.min.js')
+    script(src="/javascripts/third_party/moment.min.js")
+    script(src="/javascripts/third_party/handlebars.runtime.js")
     script(src="/javascripts/templates.js")
     script(src="/javascripts/helpers.js")
+    link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", rel="stylesheet")
     link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
     block header
