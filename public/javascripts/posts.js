@@ -1,8 +1,10 @@
 $(document).ready(function() {
 
-    $("button.createMessage").click(open);
+    $("#plaintext").hide();
+    $("#saveNewMessage").hide();
+    $("#decryptSuccess").hide();
 
-    // set form submit actions
+    // save message to db
     $("#saveMessage").click(function() {
         var password = $('#messagePassword').val();
         // var plaintext = $('#messageContent').val();
@@ -21,6 +23,28 @@ $(document).ready(function() {
         });
         return false;
     });
+
+    // decrypt message, check validity (alphanumeric)
+    $("#decryptMessage").click(function() {
+        var password = $('#decryptPassword').val();
+        var ciphertext = $('#ciphertext').text();
+        var plaintext = Aes.Ctr.decrypt(ciphertext, password, 256);
+        if (checkValidPlaintext(plaintext)){
+            $("#decryptMessage").hide();
+            $("#unencryptedContent").val(plaintext);
+            $("#plaintext").show();
+            $("#ciphertext").hide();
+            $("#decryptSuccess").show();
+            $("#decrypter").hide();
+            $("#saveNewMessage").show();
+        }
+        return false;
+    });
+
+    var checkValidPlaintext = function(word) {
+        var re = /^[\x00-\x7F]+$/;
+        return re.test(word);
+    }
 
     $.ajax({
         url: '/posts',
@@ -52,6 +76,12 @@ $(document).ready(function() {
                 console.log(jqXHR.responseText);
             }
         });
+    });
+
+    $(document).on('click', '.post-full', function(e) {
+        var ciphertext = $(this).find("p")[0];
+        $('#decryptPost').modal('show');
+        $('#ciphertext').html(ciphertext);
     });
 
     $("#search").keydown(function(e) {

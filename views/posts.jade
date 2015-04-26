@@ -30,8 +30,34 @@ block content
                                     label(for="content") Content  
                                     div#messageContent
                                 div.form-group
-                                    label(for="password") Message  
-                                    input#messagePassword.form-control(type='text', name='password', placeholder="Password (Remember This)", tabindex="-1")
+                                    label(for="password") Password  
+                                    input#messagePassword.form-control(type='text', name='password', placeholder="Password", tabindex="-1")
                         div.modal-footer
                             button.btn.btn-default(data-dismiss="modal") Close
                             button#saveMessage.btn.btn-primary Save Message
+
+        div#decryptPost.modal.fade
+            div.modal-dialog
+                    div.modal-content
+                        div.modal-header
+                            button.close(type="button", data-dismiss="modal")
+                                span(aria-hidden="true") &times;
+                            h4.modal-title Decrypt Secret Message
+                        div.modal-body
+                            div#decryptSuccess.alert.alert-success.alert-dismissible(role="alert") Successfully Decrypted Message!
+                                button.close(type="button" data-dismiss="alert" aria-label="Close")
+                                    span(aria-hidden="true") &times;
+                            div#ciphertext
+                            form#passwordForm.form(role="form")
+                                div#decrypter.form-group
+                                    label(for="password") Password  
+                                    input#decryptPassword.form-control(type='text', name='password', placeholder="Password", tabindex="-1")
+                                div#plaintext
+                                    label(for="content") Unencrypted Content
+                                    input#unencryptedContent.form-control(type='text', name='plaintext', placeholder="Plaintext", tabindex="-1")
+                        div.modal-footer
+                            button.btn.btn-default(data-dismiss="modal") Close
+                            button#decryptMessage.btn.btn-success Decrypt Message
+                            button#saveNewMessage.btn.btn-primary Save Message
+
+
