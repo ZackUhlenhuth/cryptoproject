@@ -10,7 +10,7 @@ $(document).ready(function() {
         var title = $('#messageTitle').val();
         var ciphertext = Aes.Ctr.encrypt(plaintext, password, 256);
         //calculates MAC, should be stored by client for later verification
-        //var mac_hex = HMAC_SHA256_MAC(password, ciphertext); 
+        var mac_hex = HMAC_SHA256_MAC(password, ciphertext); 
         var data = {"title": title, "content": ciphertext};
         $.ajax({
             url: "/posts/",
