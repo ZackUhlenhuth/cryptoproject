@@ -2,6 +2,10 @@ extends layout
 
 block header
     script(src='/javascripts/posts.js')
+    script.
+        $(document).ready(function(){
+            $('#messageContent').notebook();
+        });
 
 block content
     include _menu
@@ -24,7 +28,7 @@ block content
                                     input#messageTitle.form-control(type='text', name='title', placeholder="Title of Message", tabindex="-1")
                                 div.form-group
                                     label(for="content") Content  
-                                    textarea#messageContent.form-control(type='text', name='content', placeholder="Secret Content", tabindex="-1")
+                                    div#messageContent
                                 div.form-group
                                     label(for="password") Password  
                                     input#messagePassword.form-control(type='text', name='password', placeholder="Password", tabindex="-1")
