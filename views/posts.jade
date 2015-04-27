@@ -47,7 +47,9 @@ block content
                             div#decryptSuccess.alert.alert-success.alert-dismissible(role="alert") Successfully Decrypted Message!
                                 button.close(type="button" data-dismiss="alert" aria-label="Close")
                                     span(aria-hidden="true") &times;
-                            div#ciphertext
+                            div#ciphertextInfo
+                                label Ciphertext
+                                p#ciphertext
                             form#passwordForm.form(role="form")
                                 div#decrypter.form-group
                                     label(for="password") Password  

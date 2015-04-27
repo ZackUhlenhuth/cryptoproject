@@ -33,7 +33,7 @@ $(document).ready(function() {
             $("#decryptMessage").hide();
             $("#unencryptedContent").val(plaintext);
             $("#plaintext").show();
-            $("#ciphertext").hide();
+            $("#ciphertextInfo").hide();
             $("#decryptSuccess").show();
             $("#decrypter").hide();
             $("#saveNewMessage").show();
@@ -79,9 +79,9 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '.post-full', function(e) {
-        var ciphertext = $(this).find("p")[0];
+        var ciphertext = $(this).find("p").first().text();
         $('#decryptPost').modal('show');
-        $('#ciphertext').html(ciphertext);
+        $('#ciphertext').text(ciphertext);
     });
 
     $("#search").keydown(function(e) {
