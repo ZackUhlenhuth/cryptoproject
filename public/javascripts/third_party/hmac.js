@@ -290,3 +290,8 @@ function SHA256_Hash_Byte_Block(H, w) {
       w[4 * i + 2] << 8 | w[4 * i + 3];
   SHA256_Hash_Word_Block(H, W);
 }
+
+//copy to clipboard
+function copyToClipboard(text) {
+  window.prompt("Here is your MAC! Copy to your computer (Ctrl+C)", text);
+}

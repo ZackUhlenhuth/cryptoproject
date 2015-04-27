@@ -3,6 +3,7 @@ $(document).ready(function() {
     $("#plaintext").hide();
     $("#saveNewMessage").hide();
     $("#decryptSuccess").hide();
+    $("#macDisplay").hide();
 
     // save message to db
     $("#saveMessage").click(function() {
@@ -12,7 +13,8 @@ $(document).ready(function() {
         var title = $('#messageTitle').val();
         var ciphertext = Aes.Ctr.encrypt(plaintext, password, 256);
         //calculates MAC, should be stored by client for later verification
-        var mac_hex = HMAC_SHA256_MAC(password, ciphertext); 
+        var mac_hex = HMAC_SHA256_MAC(password, ciphertext);
+        //console.log(mac_hex);
         var data = {"title": title, "content": ciphertext};
         $.ajax({
             url: "/posts/",
@@ -20,6 +22,10 @@ $(document).ready(function() {
             data: data
         }).done(function(res) {
             alert("hi");
+            copyToClipboard(mac_hex);
+            // $("#saveMessage").hide();
+            // $("#mac").text(mac_hex);
+            // $("#macDisplay").show();
         });
         return false;
     });
