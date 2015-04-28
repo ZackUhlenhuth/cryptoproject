@@ -3,7 +3,6 @@ $(document).ready(function() {
     $("#plaintext").hide();
     $("#saveNewMessage").hide();
     $("#decryptSuccess").hide();
-    $("#macDisplay").hide();
 
     // save message to db
     $("#saveMessage").click(function() {
@@ -23,9 +22,6 @@ $(document).ready(function() {
         }).done(function(res) {
             alert("hi");
             copyToClipboard(mac_hex);
-            // $("#saveMessage").hide();
-            // $("#mac").text(mac_hex);
-            // $("#macDisplay").show();
         });
         return false;
     });
@@ -70,8 +66,14 @@ $(document).ready(function() {
     $("#checkMAC").click(function() {
         var password = $('#decryptPassword').val();
         var ciphertext = $('#ciphertext').text();
+        var oldMAC = $("#oldMAC").val();
         var mac_hex = HMAC_SHA256_MAC(password, ciphertext);
-        recalculatedMAC(mac_hex);
+        var isMatched = compareMACs(oldMAC, mac_hex);
+        if (isMatched){
+            $("#macComparison").text("MAC verified! Click Decrypt!");
+        }else{
+            $("#macComparison").text("MAC doesn't match!");
+        }
     });
 
 

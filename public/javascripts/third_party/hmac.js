@@ -300,3 +300,14 @@ function copyToClipboard(text) {
 function recalculatedMAC(text) {
   window.prompt("Calculated MAC. Compare to your local copy.", text);
 }
+
+//compare MACs
+function compareMACs(mac1, mac2) {
+  if (mac1.length == mac2.length){
+    if (mac1 == mac2){
+      return true;
+    }
+  }
+  return false;
+
+}
