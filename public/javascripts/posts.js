@@ -66,6 +66,14 @@ $(document).ready(function() {
         }
     });
 
+    // calculate MAC, check authenticity
+    $("#checkMAC").click(function() {
+        var password = $('#decryptPassword').val();
+        var ciphertext = $('#ciphertext').text();
+        var mac_hex = HMAC_SHA256_MAC(password, ciphertext);
+        recalculatedMAC(mac_hex);
+    });
+
 
     $(document).on('click', '.post-min', function(e) {
         var postId = $(this).data("post-id");

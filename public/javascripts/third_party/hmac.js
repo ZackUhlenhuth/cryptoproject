@@ -295,3 +295,8 @@ function SHA256_Hash_Byte_Block(H, w) {
 function copyToClipboard(text) {
   window.prompt("Here is your MAC! Copy to your computer (Ctrl+C)", text);
 }
+
+//recalculate MAC
+function recalculatedMAC(text) {
+  window.prompt("Calculated MAC. Compare to your local copy.", text);
+}
