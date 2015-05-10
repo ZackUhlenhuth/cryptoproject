@@ -8,6 +8,7 @@ router.get('/', function(req, res) {
   res.send('hello user ' + req.session.userID);
 });
 
+router.get('/usersList', isAuthorized, users.showAllUsers);
 
 router.get('/publicKeys', isAuthorized, users.showAllPublickKeys);
 

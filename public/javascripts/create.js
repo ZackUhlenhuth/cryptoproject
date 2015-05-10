@@ -513,6 +513,23 @@ $(document).ready(function() {
         $("#encrypt-modal").modal();
     });
 
+    $(document).ready(function() {
+        $("#tags").tagit();
+        $.ajax({
+                url: "/users/usersList",
+                type: 'GET',
+                success: function(users) {
+                   $("#shared").tagit({
+                        availableTags: users
+                   });
+                },
+                error: function(jqXHR, textStatus, err) {
+                    console.log(jqXHR.responseText);
+                }
+            });
+    });
+
+
     $(document).on("click", "#new-post-submit", function(e) {
         var formData = getFormData('#encrypt-form');
         console.log(formData);
@@ -525,7 +542,7 @@ $(document).ready(function() {
             var plaintext = $("#editor").wysiwyg('shell').getHTML();
             var title = $("#title").val().trim();
             var ciphertext = Aes.Ctr.encrypt(plaintext, password, 256);
-            var tags = $("#tags").tagsinput('items')
+            var tags = $("#tags").tagit("assignedTags");
             console.log(ciphertext);
             $.ajax({
                 url: "/posts/",
@@ -546,5 +563,5 @@ $(document).ready(function() {
                 }
             });
         }
-    });    
+    }); 
 });
