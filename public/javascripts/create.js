@@ -524,6 +524,7 @@ $(document).ready(function() {
             var plaintext = $("#editor").wysiwyg('shell').getHTML();
             var title = $("#title").val().trim();
             var ciphertext = Aes.Ctr.encrypt(plaintext, password, 256);
+            var tags = $("#tags").tagsinput('items')
             console.log(ciphertext);
             $.ajax({
                 url: "/posts/",
@@ -531,7 +532,7 @@ $(document).ready(function() {
                 data: {
                     title: title,
                     content: ciphertext,
-                    tags: [], // fix this
+                    tags: tags, 
                     // _csrf: csrf
                 },
                 success: function(post) {
