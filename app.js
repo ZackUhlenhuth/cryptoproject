@@ -5,7 +5,7 @@ var logger          = require('morgan');
 var cookieParser    = require('cookie-parser');
 var session         = require('express-session');
 var bodyParser      = require('body-parser');
-// var csrf            = require('csurf');
+var csrf            = require('csurf');
 var passport        = require('passport');
 var flash           = require('connect-flash');
 var morgan          = require('morgan');
@@ -40,7 +40,7 @@ app.use(session({ secret: 'crypt0pr0j3ct', resave: true, saveUninitialized: true
 app.use(passport.initialize());
 app.use(passport.session()); 
 app.use(flash()); 
-// app.use(csrf());
+app.use(csrf());
 app.use(express.static(path.join(__dirname, 'public')));
 
 require('./routes/login')(app, passport); // load our routes and pass in our app and fully configured passport

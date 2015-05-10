@@ -16,8 +16,8 @@ module.exports = function(app, passport) {
 
         // LOGIN ===============================
         app.get('/login', function(req, res) {
-            // res.render('login', { title: 'Log In', csrf: req.csrfToken()});
-            res.render('login', { title: 'Log In'});
+            res.render('login', { title: 'Log In', csrf: req.csrfToken()});
+            // res.render('login', { title: 'Log In'});
         });
 
         // process the login form

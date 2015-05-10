@@ -1,8 +1,8 @@
 extends layout
 
 block header
-  // script(type = 'text/javascript').
-  //   var csrf=!{JSON.stringify(csrf)};
+  script(type = 'text/javascript').
+    var csrf=!{JSON.stringify(csrf)};
 
 block content
   .container
@@ -24,6 +24,8 @@ block content
           .form-group
             label(for="examplePassword") Password
             input#loginPass.form-control(name="password", type="password", placeholder="Enter Password")
+          //- fix this: put in ajax?
+          input(type="hidden" name="_csrf" value="#{csrf}")
           button(type="submit")#loginButton.btn Log In
       div.col-lg-6
         //- form#registerform.page-form(name="adduser", role="form", method="post", action="/login/new")
@@ -37,6 +39,8 @@ block content
           .form-group
             label(for="exampleConfirmPassword") Confirm Password
             input#passInput.form-control(name="confirmpassword", type="password", placeholder="Enter Password")
+          //- fix this: put in ajax?
+          input(type="hidden" name="_csrf" value="#{csrf}")
           button(type="submit")#signupButton.btn Add User!
     div.footer
       p CryptoBook, April 2015

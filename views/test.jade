@@ -2,6 +2,8 @@ extends layout
 
 block header
     script(type='text/javascript', src='/javascripts/test.js')
+    script.
+        var csrf=!{JSON.stringify(csrf)}
 
 block content
     .container
