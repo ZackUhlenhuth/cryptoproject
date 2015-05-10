@@ -505,11 +505,11 @@ $(document).ready(function() {
         });
     }
 
-    loadElement("#one-pane", "post-create", {});
+    loadElement("#content", "post-create", {});
     loadEditor();
 
     $(document).on("click", "#submit-create-btn", function(e) {
-        addElement("#one-pane", "encrypt-modal", {});
+        addElement("#content", "encrypt-modal", {});
         $("#encrypt-modal").modal();
     });
 

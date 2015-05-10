@@ -3,9 +3,9 @@ $(document).ready(function() {
     loadPosts();
 
 
-    $("#plaintext").hide();
-    $("#saveNewMessage").hide();
-    $("#decryptSuccess").hide();
+    // $("#plaintext").hide();
+    // $("#saveNewMessage").hide();
+    // $("#decryptSuccess").hide();
 
     // DECRYPT POST
 
@@ -16,7 +16,7 @@ $(document).ready(function() {
         if (checkValidPlaintext(plaintext)) {
             loadElement("#right-pane", "post-full", post);
             $("#plaintext").html(plaintext);
-            $("#decrypt-modal").modal("hide");
+            $("#decrypt-modal-" + post._id).modal("hide");
         } else {
             loadElement("#decrypt-modal-error", "error", {message: "Password does not match!"});
         }
@@ -80,14 +80,13 @@ $(document).ready(function() {
         }
     });
 
-
     $(document).on('click', '.post-min', function(e) {
         var postId = $(this).data("post-id");
         $.ajax({
             url: '/posts/' + postId,
             type: 'GET',
             success: function(post) {
-                addElement("#two-pane", "decrypt-modal", post);
+                // addElement("#two-pane", "decrypt-modal", post);
                 $("#decrypt-modal-" + postId).modal();
                 // loadElement('#right-pane', 'post-full', post);
             },
@@ -97,12 +96,20 @@ $(document).ready(function() {
         });
     });
 
-    $(document).on('click', '#decrypt-post-submit', function() {
-        var formData = getFormData('#decrypt-form');
+    $(document).on('submit', '.decrypt-form', function(e) {
+        e.preventDefault();
+        var postId = $(this).data("post-id");
+        decryptPost(postId);
+    });
 
+    $(document).on('click', '.decrypt-post-submit', function(e) {
+        var postId = $(this).data("post-id");
+        decryptPost(postId);
+    });
+
+    function decryptPost(postId) {
+        var formData = getFormData('#decrypt-form-' + postId);
         var password = formData.password;
-        var postId = $("#decrypt-form").data("post-id");
-        console.log(postId);
         $.ajax({
             url: '/posts/' + postId,
             type: 'GET',
@@ -114,13 +121,15 @@ $(document).ready(function() {
                 console.log(jqXHR.responseText);
             }
         });
-    });
+    }
 
-    $(document).on('click', '.post-full', function(e) {
-        var ciphertext = $(this).find("p").first().text();
-        $('#decryptPost').modal('show');
-        $('#ciphertext').text(ciphertext);
-    });
+    // $(document).on('click', '.post-full', function(e) {
+    //     var ciphertext = $(this).find("p").first().text();
+    //     $('#decryptPost').modal('show');
+    //     $('#ciphertext').text(ciphertext);
+    // });
+
+    // SEARCH
 
     $("#search").keydown(function(e) {
         showSearchResults();
@@ -129,7 +138,6 @@ $(document).ready(function() {
     $("#search-submit").on("click", function(e) {
         showSearchResults();
     });
-
 
     var showSearchResults = function() {
         var regExp = new RegExp($("#search").val(), 'i');

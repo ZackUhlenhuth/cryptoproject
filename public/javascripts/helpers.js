@@ -56,7 +56,6 @@ var loadPosts = function() {
         url: '/posts',
         type: 'GET',
         success: function(posts) {
-            console.log(posts);
             loadElement('#content', 'posts', {posts: posts});
         },
         error: function(jqXHR, textStatus, err) {
