@@ -1,16 +1,23 @@
-<div>
-    <form id='new-goal' class="form-horizontal" role="form">
-        <div class="form-group">
-            <label class="col-lg-2 control-label" for="title">Title</label>
-            <div class="col-lg-10">
-                <input class="form-control" type='text' placeholder='Title' name='title' value='{{title}}' required/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-2 control-label" for="deadline">Deadline</label>
-            <div class="col-lg-10">
-                 <input class="form-control datepicker" type='text' name='deadline' placeholder="mm/dd/yyyy" value='{{deadline}}'/>
-            </div>
-        </div>
-    </form>
+<div id="create-post">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Enter title... ">
+    </div>
+    <div class="form-group">
+        <label for="content">Content</label>
+
+    <div id="editor-container" style="width:860px; margin: 30px auto;">
+        <textarea id="editor" name="editor" placeholder="Type your text here...">
+        Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </textarea>
+    </div>
+    </div>
+
+    <div class="form-group">
+        <label for="tags">Tags</label>
+        <input type="text" class="form-control" id="tags" placeholder="Content..."/ >
+    </div>
+    <button id="submit-create-btn" class="btn">Create</button> 
 </div>

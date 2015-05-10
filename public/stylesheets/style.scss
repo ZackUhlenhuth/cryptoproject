@@ -10,6 +10,11 @@ body {
         margin: 5px;
     }
 
+    #post-menu {
+      height: 100%;
+      overflow: auto;
+    }
+
     .tag {
       color: #fff;
       font-size: .8em;
@@ -22,5 +27,9 @@ body {
     .subtext {
         color: #bbb;
         font-size: .8em;
+    }
+
+    #editor-container, #editor {
+      background-color: white;
     }
 }

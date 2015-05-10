@@ -5,6 +5,9 @@ body {
     background-color: #fff;
     padding: 10px;
     margin: 5px; }
+  body #post-menu {
+    height: 100%;
+    overflow: auto; }
   body .tag {
     color: #fff;
     font-size: .8em;
@@ -15,5 +18,7 @@ body {
   body .subtext {
     color: #bbb;
     font-size: .8em; }
+  body #editor-container, body #editor {
+    background-color: white; }
 
 /*# sourceMappingURL=style.css.map */

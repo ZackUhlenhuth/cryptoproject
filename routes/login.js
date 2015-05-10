@@ -60,7 +60,7 @@ router.get('/', function(req, res) {
 	if (req.session.userId) {
 		res.redirect('/main');
 	} else {
-		res.render('login', { title: 'Log In'});
+		res.render('login', { title: 'Log In', csrf: req.csrfToken()});
 	}
 });
 

@@ -1,8 +1,12 @@
 extends layout
 
 block header
+    script(src='/javascripts/third_party/wysiwyg.js')
+    script(src='/javascripts/third_party/wysiwyg-editor.js')
+    link(rel='stylesheet', href='/stylesheets/wysiwyg-editor.css')
     script(src='/javascripts/posts.js')
     script.
+        var csrf=!{JSON.stringify(csrf)}
         $(document).ready(function(){
             $('#messageContent').notebook();
         });
@@ -10,7 +14,9 @@ block header
 block content
     include _menu
     .container
-        .row
+        .row#content
+        .row#one-pane
+        .row#two-pane
             .col-sm-6#left-pane
             .col-sm-6#right-pane
 

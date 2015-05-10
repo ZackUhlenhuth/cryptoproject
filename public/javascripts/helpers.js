@@ -1,6 +1,8 @@
 Handlebars.registerPartial('post-full', Handlebars.templates['post-full']);
 Handlebars.registerPartial('post-min', Handlebars.templates['post-min']);
 Handlebars.registerPartial('tag', Handlebars.templates['tag']);
+Handlebars.registerPartial('error', Handlebars.templates['error']);
+Handlebars.registerPartial('post-menu', Handlebars.templates['post-menu']);
 
 Handlebars.registerHelper('formatDate', function(date) {
     return moment(date).fromNow();
@@ -9,7 +11,7 @@ Handlebars.registerHelper('formatDate', function(date) {
 // Load template into entire page
 var loadPage = function(template, data) {
     data = data || {};
-    $('.content').html(Handlebars.templates[template](data));
+    $('#content').html(Handlebars.templates[template](data));
 }
 
 // Load error into error dialog
@@ -37,4 +39,27 @@ var replaceElement = function(selector, template, data) {
 // Load template to specified selector
 var loadElement = function(selector, template, data) {
     $(selector).html(Handlebars.templates[template](data));
+}
+
+
+var getFormData = function(form) {
+    var inputs = {};
+    $(form).serializeArray().forEach(function(item) {
+      inputs[item.name] = item.value;
+    });
+    return inputs;
+};
+
+var loadPosts = function() {
+    $.ajax({
+        url: '/posts',
+        type: 'GET',
+        success: function(posts) {
+            console.log(posts);
+            loadElement('#content', 'posts', {posts: posts});
+        },
+        error: function(jqXHR, textStatus, err) {
+            console.log(jqXHR.responseText);
+        }
+    });
 }

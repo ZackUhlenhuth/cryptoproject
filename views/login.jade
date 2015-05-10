@@ -2,6 +2,11 @@
 
 extends layout
 
+block header
+  script(src="/javascripts/users.js")
+  script(type = 'text/javascript').
+    var csrf=!{JSON.stringify(csrf)};
+
 block content
   .container
     div.header
@@ -14,16 +19,18 @@ block content
 
     div.row
       div.col-lg-6
-        form#loginform.page-form(name="loginuser", role="form", method="post", action="/login/")
+        //- form#loginForm.page-form(name="loginuser", role="form", method="post", action="/login/")
+        form#loginForm
           .form-group
             label(for="exampleUserName") User Name
             input#loginName.form-control(name="username", placeholder="Enter Username")
           .form-group
             label(for="examplePassword") Password
             input#loginPass.form-control(name="password", type="password", placeholder="Enter Password")
-          button#loginButton.btn.btn-primary(type="submit") Log In
+        button#loginButton.btn Log In
       div.col-lg-6
-        form#registerform.page-form(name="adduser", role="form", method="post", action="/login/new")
+        //- form#registerform.page-form(name="adduser", role="form", method="post", action="/login/new")
+        form#registerform
           .form-group
             label(for="exampleUserName") User Name
             input#usernameInput.form-control(name="username", placeholder="Enter Username")
@@ -33,6 +40,6 @@ block content
           .form-group
             label(for="exampleConfirmPassword") Confirm Password
             input#passInput.form-control(name="confirmpassword", type="password", placeholder="Enter Password")
-          button#signupButton.btn.btn-success(type="submit") Add User!
+          button#signupButton.btn Add User!
     div.footer
       p CryptoBook, April 2015

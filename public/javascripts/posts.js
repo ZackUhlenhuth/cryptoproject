@@ -1,66 +1,71 @@
 $(document).ready(function() {
 
+    loadPosts();
+
+
     $("#plaintext").hide();
     $("#saveNewMessage").hide();
     $("#decryptSuccess").hide();
 
-    // save message to db
-    $("#saveMessage").click(function() {
-        var password = $('#messagePassword').val();
-        // var plaintext = $('#messageContent').val();
-        var plaintext = $('#messageContent').get(0).innerHTML;
-        var title = $('#messageTitle').val();
-        var ciphertext = Aes.Ctr.encrypt(plaintext, password, 256);
-        //calculates MAC, should be stored by client for later verification
-        var mac_hex = HMAC_SHA256_MAC(password, ciphertext);
-        //console.log(mac_hex);
-        var data = {"title": title, "content": ciphertext};
-        $.ajax({
-            url: "/posts/",
-            type: 'POST',
-            data: data
-        }).done(function(res) {
-            alert("hi");
-            copyToClipboard(mac_hex);
-        });
-        return false;
-    });
+    // DECRYPT POST
 
-    // decrypt message, check validity (alphanumeric)
-    $("#decryptMessage").click(function() {
-        var password = $('#decryptPassword').val();
-        var ciphertext = $('#ciphertext').text();
-        var plaintext = Aes.Ctr.decrypt(ciphertext, password, 256);
-        if (checkValidPlaintext(plaintext)){
-            $("#decryptMessage").hide();
-            $("#unencryptedContent").val(plaintext);
-            $("#plaintext").show();
-            $("#ciphertextInfo").hide();
-            $("#decryptSuccess").show();
-            $("#decrypter").hide();
-            $("#saveNewMessage").show();
+
+    var decryptContent = function(post, password, callback) {
+        var plaintext = Aes.Ctr.decrypt(post.content, password, 256);
+        console.log(checkValidPlaintext(plaintext));
+        if (checkValidPlaintext(plaintext)) {
+            loadElement("#right-pane", "post-full", post);
+            $("#plaintext").html(plaintext);
+            $("#decrypt-modal").modal("hide");
+        } else {
+            loadElement("#decrypt-modal-error", "error", {message: "Password does not match!"});
+
         }
-        return false;
-    });
+    }
+
+    // // save message to db
+    // $("#saveMessage").click(function() {
+    //     var password = $('#messagePassword').val();
+    //     // var plaintext = $('#messageContent').val();
+    //     var plaintext = $('#messageContent').get(0).innerHTML;
+    //     var title = $('#messageTitle').val();
+    //     var ciphertext = Aes.Ctr.encrypt(plaintext, password, 256);
+    //     //calculates MAC, should be stored by client for later verification
+    //     var mac_hex = HMAC_SHA256_MAC(password, ciphertext);
+    //     //console.log(mac_hex);
+    //     var data = {"title": title, "content": ciphertext};
+    //     $.ajax({
+    //         url: "/posts/",
+    //         type: 'POST',
+    //         data: data
+    //     }).done(function(res) {
+    //         alert("hi");
+    //         copyToClipboard(mac_hex);
+    //     });
+    //     return false;
+    // });
+
+    // // decrypt message, check validity (alphanumeric)
+    // $("#decryptMessage").click(function() {
+    //     var password = $('#decryptPassword').val();
+    //     var ciphertext = $('#ciphertext').text();
+    //     var plaintext = Aes.Ctr.decrypt(ciphertext, password, 256);
+    //     if (checkValidPlaintext(plaintext)){
+    //         $("#decryptMessage").hide();
+    //         $("#unencryptedContent").val(plaintext);
+    //         $("#plaintext").show();
+    //         $("#ciphertextInfo").hide();
+    //         $("#decryptSuccess").show();
+    //         $("#decrypter").hide();
+    //         $("#saveNewMessage").show();
+    //     }
+    //     return false;
+    // });
 
     var checkValidPlaintext = function(word) {
         var re = /^[\x00-\x7F]+$/;
         return re.test(word);
     }
-
-    $.ajax({
-        url: '/posts',
-        type: 'GET',
-        // data: {
-        //     _csrf: csrf
-        // },
-        success: function(posts) {
-            loadElement('#left-pane', 'post-menu', {posts: posts});
-        },
-        error: function(jqXHR, textStatus, err) {
-            console.log(jqXHR.responseText);
-        }
-    });
 
     // calculate MAC, check authenticity
     $("#checkMAC").click(function() {
@@ -82,11 +87,29 @@ $(document).ready(function() {
         $.ajax({
             url: '/posts/' + postId,
             type: 'GET',
-            // data: {
-            //     _csrf: csrf
-            // },
             success: function(post) {
-                loadElement('#right-pane', 'post-full', post);
+                addElement("#two-pane", "decrypt-modal", post);
+                $("#decrypt-modal").modal();
+                // loadElement('#right-pane', 'post-full', post);
+            },
+            error: function(jqXHR, textStatus, err) {
+                console.log(jqXHR.responseText);
+            }
+        });
+    });
+
+    $(document).on('click', '#decrypt-post-submit', function() {
+        var formData = getFormData('#decrypt-form');
+
+        var password = formData.password;
+        var postId = $("#decrypt-form").data("post-id");
+        console.log(postId);
+        $.ajax({
+            url: '/posts/' + postId,
+            type: 'GET',
+            success: function(post) {
+                decryptContent(post, password);
+                $("#password").val("");
             },
             error: function(jqXHR, textStatus, err) {
                 console.log(jqXHR.responseText);
@@ -107,6 +130,7 @@ $(document).ready(function() {
     $("#search-submit").on("click", function(e) {
         showSearchResults();
     });
+
 
     var showSearchResults = function() {
         var regExp = new RegExp($("#search").val(), 'i');

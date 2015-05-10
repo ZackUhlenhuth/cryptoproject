@@ -1,0 +1,38 @@
+<div id="encrypt-modal" tabindex="-1" role="dialog" aria-labelledby="encryptModalLabel" aria-hidden="true" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button", data-dismiss="modal", aria-hidden="true">&times;</button>
+                <h4 id="encryptModalLabel" class="modal-title">Encrypt post</h4>
+            </div>
+            <div class="modal-body">
+                <div id="modal-error"></div>
+                <form id='encrypt-form' class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" for="password">Password</label>
+                        <div class="col-lg-10">
+                            <input class="form-control" type='password' name='password' required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" for="confirm-password">Confirm Password</label>
+                        <div class="col-lg-10">
+                            <input class="form-control" type='password' name='confirm-password' required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-2 control-label" for="hint">Hint</label>
+                        <div class="col-lg-10">
+                            <input class="form-control" type='text' name='hint'/>
+                            <p class="help-block">Example block-level help text here.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">Close</button>
+                <button id="new-post-submit" type="button" class="btn">Create</button>
+            </div>
+        </div>
+    </div>
+</div>

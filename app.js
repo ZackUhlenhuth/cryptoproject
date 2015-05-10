@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
-// var csrf = require('csurf');
+var csrf = require('csurf');
 
 var app = express();
 
@@ -30,7 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(session({ secret: 'crypt0pr0j3ct', resave: true, saveUninitialized: true })); // session secret
-// app.use(csrf());
+app.use(csrf());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
