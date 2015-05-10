@@ -9,7 +9,8 @@ var postSchema = mongoose.Schema({
     content: {type: String, required: true},
     date: {type: Date, required: true},
     tags: [{type: String}],
-    hint: {type: String}
+    hint: {type: String},
+    shared: [{type: objectId, ref: 'SharedPost'}]
 });
 
 postSchema.method('edit', function(editObj, callback) {
