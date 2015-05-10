@@ -1,67 +1,37 @@
-/* authored by Zack Uhlenhuth */
+var isAuthorized = require('../utils/auth');
 
-var express = require('express');
-var router = express.Router();
-var User = require('../models/user');
+module.exports = function(app, passport) {
 
-/* POST to login user */
-router.post('/', function(req, res) {
-	User.findOne({'username': req.body.username}, function(err, user) {
-		console.log("hello");
-		if (err) return console.log(err);
-		if (user != null) {
-			if (user.password == req.body.password) {
-				req.session.user = user;
-				console.log(user);
-				res.redirect('/main');
-			}
-			else {
-				res.render('login', { title: 'Log In' , error : true});
-			}
-		} else {
-			res.render('login', { title: 'Log In' , error : true});
-		}
-	});
-});
+// normal routes ===============================================================
 
-/* POST to create user 
-includes their name, password, and mobile phone number
-logs them into the system */
-router.post('/new', function(req, res) {
-	User.findOne({'username': req.body.username}, function(err, user) {
-		if (err) return console.log(err);
-		if (user == null) {
-			if (req.body.username != "" && req.body.password != "" && req.body.confirmpassword != ""){
-				if (req.body.confirmpassword == req.body.password) {
-					var data = {username: req.body.username, password: req.body.password};
-					var user = new User(data);
-					user.save(function (err) {
-						if (err) res.send(err);
-						res.redirect('/');
-						req.session.userId = user._id;
-					});
-				}
-				else {
-					res.render('login');
-				}
-			}
-			else {
-				res.render('login');
-			}
-		}
-		else {
-			res.render('login');
-		}
-	});
-});
+    // LOGOUT ==============================
+    app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/');
+    });
 
-/** GET for rendering the page */
-router.get('/', function(req, res) {
-	if (req.session.userId) {
-		res.redirect('/main');
-	} else {
-		res.render('login', { title: 'Log In', csrf: req.csrfToken()});
-	}
-});
+// =============================================================================
+// AUTHENTICATE (FIRST LOGIN) ==================================================
+// =============================================================================
 
-module.exports = router;
+        // LOGIN ===============================
+        app.get('/login', function(req, res) {
+            // res.render('login', { title: 'Log In', csrf: req.csrfToken()});
+            res.render('login', { title: 'Log In'});
+        });
+
+        // process the login form
+        app.post('/login', passport.authenticate('local-login', {
+            successRedirect : '/main', // redirect to the secure profile section
+            failureRedirect : '/login', // redirect back to the signup page if there is an error
+            failureFlash : true // allow flash messages
+        }));
+
+        // process the signup form
+        app.post('/signup', passport.authenticate('local-signup', {
+            successRedirect : '/main', // redirect to the secure profile section
+            failureRedirect : '/login', // redirect back to the signup page if there is an error
+            failureFlash : true // allow flash messages
+        }));
+
+};

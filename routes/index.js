@@ -12,11 +12,15 @@ router.get('/test', isAuthorized, function(req, res) {
 });
 
 router.get('/main', isAuthorized, function(req, res) {
-    res.render('posts', {title: 'CryptoBook', csrf: req.csrfToken()});
+    // res.render('posts', {title: 'CryptoBook', csrf: req.csrfToken()});
+    res.render('posts', {title: 'CryptoBook'});
 });
 
 router.get('/create', isAuthorized, function(req, res) {
-    res.render('create', {title: 'CryptoBook', csrf: req.csrfToken()});
+    // res.render('create', {title: 'CryptoBook', csrf: req.csrfToken()});
+    res.render('create', {title: 'CryptoBook'});
 })
+
+
 
 module.exports = router;

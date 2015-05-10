@@ -532,7 +532,7 @@ $(document).ready(function() {
                     title: title,
                     content: ciphertext,
                     tags: [], // fix this
-                    _csrf: csrf
+                    // _csrf: csrf
                 },
                 success: function(post) {
                     $("#encrypt-modal").modal("hide");
