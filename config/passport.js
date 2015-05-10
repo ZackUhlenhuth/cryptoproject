@@ -87,10 +87,7 @@ module.exports = function(passport) {
 
                         newUser.username        = username;
                         newUser.password        = newUser.generateHash(password);
-
-                        var RSAKey              = cryptico.generateRSAKey(newUser.password, 1024);
-                        newUser.privateKey      = JSON.stringify(RSAKey);
-                        newUser.publicKey       = cryptico.publicKeyString(RSAKey);  
+                        newUser.publicKey       = cryptico.publicKeyString(cryptico.generateRSAKey(password, 1024));  
 
                         newUser.save(function(err) {
                             if (err)
