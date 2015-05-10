@@ -3,6 +3,7 @@ Handlebars.registerPartial('post-min', Handlebars.templates['post-min']);
 Handlebars.registerPartial('tag', Handlebars.templates['tag']);
 Handlebars.registerPartial('error', Handlebars.templates['error']);
 Handlebars.registerPartial('post-menu', Handlebars.templates['post-menu']);
+Handlebars.registerPartial('decrypt-modal', Handlebars.templates['decrypt-modal']);
 
 Handlebars.registerHelper('formatDate', function(date) {
     return moment(date).fromNow();

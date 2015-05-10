@@ -19,7 +19,6 @@ $(document).ready(function() {
             $("#decrypt-modal").modal("hide");
         } else {
             loadElement("#decrypt-modal-error", "error", {message: "Password does not match!"});
-
         }
     }
 
@@ -89,7 +88,7 @@ $(document).ready(function() {
             type: 'GET',
             success: function(post) {
                 addElement("#two-pane", "decrypt-modal", post);
-                $("#decrypt-modal").modal();
+                $("#decrypt-modal-" + postId).modal();
                 // loadElement('#right-pane', 'post-full', post);
             },
             error: function(jqXHR, textStatus, err) {

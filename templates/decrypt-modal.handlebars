@@ -1,4 +1,4 @@
-<div id="decrypt-modal" tabindex="-1" role="dialog" aria-labelledby="decryptModalLabel" aria-hidden="true" class="modal fade">
+<div id="decrypt-modal-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="decryptModalLabel" aria-hidden="true" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,12 +14,14 @@
                             <input class="form-control" type='password' name='password' required/>
                         </div>
                     </div>
+                    {{#if hint}}
                     <div class="form-group">
                         <label class="col-lg-2 control-label" for="hint">Hint</label>
                         <div class="col-lg-10">
-                            <input class="form-control" type='text' name='hint'/>{{hint}}
+                            {{hint}}
                         </div>
                     </div>
+                    {{/if}}
                 </form>
             </div>
             <div class="modal-footer">

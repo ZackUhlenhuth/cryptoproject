@@ -518,6 +518,7 @@ $(document).ready(function() {
         console.log(formData);
         var password = formData.password.trim();
         var confirmPassword = formData['confirm-password'].trim();
+        var hint = formData.hint.trim();
         if (password != confirmPassword) {
             loadElement("#modal-error", "error", {message: "Passwords do not match!"});
         } else {
@@ -532,6 +533,7 @@ $(document).ready(function() {
                 data: {
                     title: title,
                     content: ciphertext,
+                    hint: hint,
                     tags: tags, 
                     _csrf: csrf
                 },
