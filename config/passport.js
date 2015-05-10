@@ -1,5 +1,6 @@
 // load all the things we need
-var LocalStrategy    = require('passport-local').Strategy;
+var LocalStrategy   = require('passport-local').Strategy;
+var cryptico        = require('cryptico-js');
 
 // load up the user model
 var User       = require('../models/user');
@@ -84,8 +85,12 @@ module.exports = function(passport) {
                         // create the user
                         var newUser            = new User();
 
-                        newUser.username = username;
-                        newUser.password = newUser.generateHash(password);
+                        newUser.username        = username;
+                        newUser.password        = newUser.generateHash(password);
+
+                        var RSAKey              = cryptico.generateRSAKey(newUser.password, 1024);
+                        newUser.privateKey      = JSON.stringify(RSAKey);
+                        newUser.publicKey       = cryptico.publicKeyString(RSAKey);  
 
                         newUser.save(function(err) {
                             if (err)
