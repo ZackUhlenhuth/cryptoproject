@@ -4,11 +4,11 @@ var posts = require('../controllers/posts');
 var isAuthorized = require('../utils/auth');
 
 /* GET users listing. */
+router.get('/shared', isAuthorized, posts.showAllShared);
+
 router.get('/:id', isAuthorized, posts.show);
 
 router.get('/', isAuthorized, posts.showAll);
-
-router.get('/shared', isAuthorized, posts.showAllShared);
 
 router.post('/', isAuthorized, posts.create);
 

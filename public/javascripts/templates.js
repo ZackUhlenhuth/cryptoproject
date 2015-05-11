@@ -28,6 +28,12 @@ templates['error'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(
     + escapeExpression(((helper = (helper = helpers.message || (depth0 != null ? depth0.message : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"message","hash":{},"data":data}) : helper)))
     + "\n</div>\n";
 },"useData":true});
+templates['intro'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<p>CryptoBook is a secure online encrypted blog.</p>";
+  },"useData":true});
+templates['login'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<form action=\"/login\" method=\"post\" id=\"loginForm\">\n  <div class=\"form-group\">\n    <input id=\"username\" name=\"username\" placeholder=\"Username\" class=\"form-control login-input\"/>\n  </div>\n  <div class=\"form-group\">\n    <input id=\"password\" name=\"password\" type=\"password\" placeholder=\"Password\" class=\"form-control login-input\"/>\n  </div>\n  <button id=\"signup-btn\" class=\"btn\">Signup</button>\n  <button type=\"submit\" id=\"login-btn\" class=\"btn\">Login</button>\n</form>";
+  },"useData":true});
 templates['post-create'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<div id=\"create-post\">\n    <div class=\"form-group\">\n        <input type=\"text\" class=\"form-control\" id=\"title\" placeholder=\"Title\">\n    </div>\n    <div class=\"form-group\">\n        <label for=\"content\">Content</label>\n        <div id=\"editor-container\">\n            <textarea id=\"editor\" name=\"editor\"></textarea>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label for=\"tags\">Tags</label>\n        <input type=\"text\" class=\"form-control\" id=\"tags\" placeholder=\"Content...\" data-role=\"tagsinput\"/ >\n    </div>\n    <div class=\"form-group\">\n        <label for=\"title\">Share</label>\n        <input type=\"text\" class=\"form-control\" id=\"shared\" placeholder=\"Enter users to share with... \">\n    </div>\n    <button id=\"submit-create-btn\" class=\"btn\">Create</button> \n</div>";
   },"useData":true});
@@ -72,16 +78,11 @@ templates['post-full'] = template({"1":function(depth0,helpers,partials,data) {
 templates['post-instructions'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return " <div id=\"post-instructions\" class=\"post-full\">\n    <h1>How to Use CryptoBook</h1>\n    <p id=\"plaintext\">Lalalala</p>\n </div>";
 },"useData":true});
-templates['post-menu'] = template({"1":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "";
-  stack1 = this.invokePartial(partials['post-min'], '        ', 'post-min', depth0, undefined, helpers, partials, data);
+templates['post-menu'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "<div id=\"post-menu\">\n    <button id=\"my-posts\" class=\"post-menu-btn btn\">My Posts</button>\n    <button id=\"shared-posts\" class=\"post-menu-btn btn\">Shared With Me</button>\n    <div id=\"posts\">\n";
+  stack1 = this.invokePartial(partials.posts, '        ', 'posts', depth0, undefined, helpers, partials, data);
   if (stack1 != null) { buffer += stack1; }
-  return buffer;
-},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<div id=\"post-menu\">\n    <button id=\"my-posts\" class=\"post-menu-btn btn\">My Posts</button>\n    <button id=\"shared-posts\" class=\"post-menu-btn btn\">Shared With Me</button>\n";
-  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.posts : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
-  if (stack1 != null) { buffer += stack1; }
-  return buffer + "</div>";
+  return buffer + "    </div>\n</div>";
 },"usePartial":true,"useData":true});
 templates['post-min'] = template({"1":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
@@ -107,7 +108,7 @@ templates['post-min'] = template({"1":function(depth0,helpers,partials,data) {
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"usePartial":true,"useData":true});
-templates['posts'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+templates['posts-page'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, buffer = "<div id=\"left-pane\" class=\"col-sm-4\">\n";
   stack1 = this.invokePartial(partials['post-menu'], '    ', 'post-menu', depth0, undefined, helpers, partials, data);
   if (stack1 != null) { buffer += stack1; }
@@ -116,6 +117,78 @@ templates['posts'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</div>";
 },"usePartial":true,"useData":true});
+templates['posts'] = template({"1":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.posts : depth0), {"name":"each","hash":{},"fn":this.program(2, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer;
+},"2":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "";
+  stack1 = this.invokePartial(partials['post-min'], '        ', 'post-min', depth0, undefined, helpers, partials, data);
+  if (stack1 != null) { buffer += stack1; }
+  return buffer;
+},"4":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.posts : depth0), {"name":"each","hash":{},"fn":this.program(5, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer;
+},"5":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "";
+  stack1 = this.invokePartial(partials['shared-post-min'], '        ', 'shared-post-min', depth0, undefined, helpers, partials, data);
+  if (stack1 != null) { buffer += stack1; }
+  return buffer;
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1;
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.shared : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.program(4, data),"data":data});
+  if (stack1 != null) { return stack1; }
+  else { return ''; }
+  },"usePartial":true,"useData":true});
+templates['shared-decrypt-modal'] = template({"1":function(depth0,helpers,partials,data) {
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "                    <div class=\"form-group\">\n                        <label class=\"col-lg-2 control-label\" for=\"hint\">Hint</label>\n                        <div class=\"col-lg-10\">\n                            "
+    + escapeExpression(((helper = (helper = helpers.hint || (depth0 != null ? depth0.hint : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"hint","hash":{},"data":data}) : helper)))
+    + "\n                        </div>\n                    </div>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, buffer = "<div id=\"decrypt-modal-"
+    + escapeExpression(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"_id","hash":{},"data":data}) : helper)))
+    + "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"decryptModalLabel\" aria-hidden=\"true\" class=\"modal decrypt-modal fade\">\n    <div class=\"modal-dialog\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header\">\n                <button class=\"close\" type=\"button\", data-dismiss=\"modal\", aria-hidden=\"true\">&times;</button>\n                <h4 id=\"decryptModalLabel\" class=\"modal-title\">Decrypt post</h4>\n            </div>\n            <div class=\"modal-body\">\n                <div id=\"decrypt-modal-error\"></div>\n                <form id='decrypt-form-"
+    + escapeExpression(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"_id","hash":{},"data":data}) : helper)))
+    + "' class=\"decrypt-form\" class=\"form-horizontal\" role=\"form\" data-post-id=\""
+    + escapeExpression(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"_id","hash":{},"data":data}) : helper)))
+    + "\">\n                    <div class=\"form-group\">\n                        <label class=\"col-lg-2 control-label\" for=\"password\">Password</label>\n                        <div class=\"col-lg-10\">\n                            <input class=\"form-control\" type='password' name='password' required/>\n                        </div>\n                    </div>\n";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.hint : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "                </form>\n            </div>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn\" data-dismiss=\"modal\">Close</button>\n                <button type=\"button\" class=\"decrypt-post-submit btn\" data-post-id="
+    + escapeExpression(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"_id","hash":{},"data":data}) : helper)))
+    + ">Decrypt</button>\n            </div>\n        </div>\n    </div>\n</div>";
+},"useData":true});
+templates['shared-post-min'] = template({"1":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "";
+  stack1 = this.invokePartial(partials.tag, '            ', 'tag', depth0, undefined, helpers, partials, data);
+  if (stack1 != null) { buffer += stack1; }
+  return buffer;
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, lambda=this.lambda, buffer = "<div id=\"post-"
+    + escapeExpression(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"_id","hash":{},"data":data}) : helper)))
+    + "\" class=\"post-min\" data-post-id=\""
+    + escapeExpression(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"_id","hash":{},"data":data}) : helper)))
+    + "\">\n    <h3>"
+    + escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"title","hash":{},"data":data}) : helper)))
+    + "</h3>\n    <div>\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.tags : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "    </div>\n    <p class=\"subtext\">Posted "
+    + escapeExpression(((helpers.formatDate || (depth0 && depth0.formatDate) || helperMissing).call(depth0, (depth0 != null ? depth0.date : depth0), {"name":"formatDate","hash":{},"data":data})))
+    + " by "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.author : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</p>\n</div>\n";
+  stack1 = this.invokePartial(partials['decrypt-modal'], '', 'decrypt-modal', depth0, undefined, helpers, partials, data);
+  if (stack1 != null) { buffer += stack1; }
+  return buffer;
+},"usePartial":true,"useData":true});
+templates['signup'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return "<form action=\"/signup\" method=\"post\" id=\"loginForm\">\n  <div class=\"form-group\">\n    <input id=\"username\" name=\"username\" placeholder=\"Username\" class=\"form-control login-input\"/>\n  </div>\n  <div class=\"form-group\">\n    <input id=\"password\" name=\"password\" type=\"password\" placeholder=\"Password\" class=\"form-control login-input\"/>\n  </div>\n  <div class=\"form-group\">\n    <input id=\"confirmPassword\" name=\"confirmPassword\" type=\"password\" placeholder=\"Confirm Password\" class=\"form-control login-input\"/>\n  </div>\n  <button type=\"submit\" id=\"signup-btn\" class=\"btn\">Signup</button>\n  <button id=\"login-btn\" class=\"btn\">Login</button>\n</form>";
+  },"useData":true});
 templates['tag'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<span class=\"tag tag-"

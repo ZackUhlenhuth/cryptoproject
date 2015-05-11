@@ -6,6 +6,9 @@ Handlebars.registerPartial('post-menu', Handlebars.templates['post-menu']);
 Handlebars.registerPartial('decrypt-modal', Handlebars.templates['decrypt-modal']);
 Handlebars.registerPartial('post-instructions', Handlebars.templates['post-instructions']);
 Handlebars.registerPartial('post-default', Handlebars.templates['post-default']);
+Handlebars.registerPartial('posts', Handlebars.templates['posts']);
+Handlebars.registerPartial('shared-post-min', Handlebars.templates['shared-post-min']);
+Handlebars.registerPartial('shared-decrypt-modal', Handlebars.templates['shared-decrypt-modal']);
 
 Handlebars.registerHelper('formatDate', function(date) {
     return moment(date).fromNow();
@@ -58,7 +61,7 @@ var loadPosts = function() {
         url: '/posts',
         type: 'GET',
         success: function(posts) {
-            loadElement('#content', 'posts', {posts: posts});
+            loadElement('#content', 'posts-page', {posts: posts});
         },
         error: function(jqXHR, textStatus, err) {
             console.log(jqXHR.responseText);
