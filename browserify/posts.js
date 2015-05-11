@@ -2,10 +2,16 @@ var cryptico = require('cryptico-js');
 
 function decryptCiphertext(post, password) {
     var ciphertext = post.content;
-    var plaintext = cryptico.decrypt(ciphertext, cryptico.generateRSAKey("asdf", 1024)).plaintext;
-    loadElement("#right-pane", "post-full", post);
-    $("#plaintext").html(plaintext);
-    $("#decrypt-modal-" + post._id).modal("hide");
+    var decipher = cryptico.decrypt(ciphertext, cryptico.generateRSAKey(password, 1024));
+    var plaintext = decipher.plaintext;
+
+        if (decipher.status == "success") {
+            loadElement("#right-pane", "post-full", post);
+            $("#plaintext").html(plaintext);
+            $("#decrypt-modal-" + post._id).modal("hide");
+        } else {
+            loadElement("#decrypt-modal-error", "error", {message: "Password does not match!"});
+        }
 }
 
 $(document).ready(function() {
@@ -72,12 +78,12 @@ $(document).ready(function() {
         decryptPost(postId);
     });
 
-    $(document).on('click', '.decrypt-post-submit', function(e) {
+    $(document).on('click', '.shared-decrypt-post-submit', function(e) {
         var postId = $(this).data("post-id");
         decryptSharedPost(postId);
     });
 
-    $(document).on('click', '.shared-decrypt-post-submit', function(e) {
+    $(document).on('click', '.decrypt-post-submit', function(e) {
         var postId = $(this).data("post-id");
         decryptPost(postId);
     });
