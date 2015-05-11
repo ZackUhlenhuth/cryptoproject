@@ -62,15 +62,18 @@ posts.showAllShared = function(req, res) {
 
 
 posts.create = function(req, res) {
+    console.log(req)
     var postObj = {
         author: req.user._id,
         title: req.body.title,
         content: req.body.content,
-        tags: req.body['tags[]'],
+        tags: req.body.tags,
         date: moment(),
         mac_hex: req.body.mac_hex,
         hint: req.body.hint,
     };
+    console.log("=======================================================")
+    console.log(postObj)
     Post.create(postObj, function(err, post) {
         if (err) {
             res.status(err.statusCode || 500).send(err);
@@ -96,7 +99,7 @@ posts.createShared = function(req, res) {
             sharedWith: user,
             title: req.body.title,
             content: req.body.content,
-            tags: req.body['tags[]'],
+            tags: req.body.tags,
             date: moment(),
         };
 

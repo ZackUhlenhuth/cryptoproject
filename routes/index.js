@@ -4,7 +4,7 @@ var isAuthorized = require('../utils/auth');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' , csrf: req.csrfToken()});
+  res.render('index', { title: 'CryptoBook' , csrf: req.csrfToken()});
 });
 
 router.get('/test', isAuthorized, function(req, res) {
