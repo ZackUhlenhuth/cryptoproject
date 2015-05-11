@@ -64,12 +64,12 @@ $(document).ready(function() {
         decryptPost(postId);
     });
 
-    $(document).on('click', '.shared-decrypt-post-submit', function(e) {
+    $(document).on('click', '.decrypt-post-submit', function(e) {
         var postId = $(this).data("post-id");
         decryptPost(postId);
     });
 
-    $(document).on('click', '.decrypt-post-submit', function(e) {
+    $(document).on('click', '.shared-decrypt-post-submit', function(e) {
         var postId = $(this).data("post-id");
         decryptSharedPost(postId);
     });
