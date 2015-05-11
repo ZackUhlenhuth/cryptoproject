@@ -8,22 +8,30 @@
 
         $("#loginForm").on("submit", function(e) {
             e.preventDefault();
+            var route = $(this).data("route");
+            login(route);
         });
 
-        $("#password").on("keydown", function(e) {
+        $(document).on("keydown", "#password", function(e) {
             if (e.keyCode == 13) {
+                e.preventDefault();
                 login("/login");
             }
-        })
+        });
 
-        $("#login-btn").on("click", function(e) {
+        $(document).on("click", "#login-btn", function(e) {
             e.preventDefault();
             login("/login");
         });
 
-        $("#submit-btn").on("click", function(e) {
+        $(document).on("click", "#signup-btn", function(e) {
             e.preventDefault();
-            login("/signup");
+            var formData = getFormData('#loginForm');
+            if ($("#confirmPassword").length > 0) {
+                login('/signup');
+            } else {
+                loadElement("#content", "signup", formData);
+            }
         });
 
         function login(route) {

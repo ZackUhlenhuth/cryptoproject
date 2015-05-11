@@ -29,16 +29,18 @@ body {
     padding: 60px 20px;
     width: 342px;
     height: 70vh;
-    text-align: center; }
+    text-align: center;
+    color: #fff; }
     body #login h1 {
       font-family: 'Oswald';
       text-transform: uppercase;
-      margin: 20px auto;
-      color: #fff; }
+      margin: 20px auto; }
     body #login h5 {
       margin-bottom: 20px;
       color: #ddd;
       font-style: italic; }
+    body #login #content {
+      margin: -2px; }
     body #login .login-input {
       border-radius: 0;
       font-size: 0.8em; }
@@ -47,14 +49,16 @@ body {
       border-radius: 0;
       font-family: 'Oswald';
       text-transform: uppercase;
-      background-color: #ddd; }
+      background-color: #ddd;
+      color: #333; }
     body #login #signup-btn {
       margin-right: 20px; }
     body #login #page-turn-img {
       right: 0;
       top: 0;
       width: 30px;
-      position: absolute; }
+      position: absolute;
+      cursor: pointer; }
   body .post-min {
     background-color: #fff;
     padding: 5px 10px;

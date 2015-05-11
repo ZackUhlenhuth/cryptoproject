@@ -32,8 +32,13 @@ templates['intro'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(
   return "<p>CryptoBook is a secure online encrypted blog.</p>";
   },"useData":true});
 templates['login'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<form action=\"/login\" method=\"post\" id=\"loginForm\">\n  <div class=\"form-group\">\n    <input id=\"username\" name=\"username\" placeholder=\"Username\" class=\"form-control login-input\"/>\n  </div>\n  <div class=\"form-group\">\n    <input id=\"password\" name=\"password\" type=\"password\" placeholder=\"Password\" class=\"form-control login-input\"/>\n  </div>\n  <button id=\"signup-btn\" class=\"btn\">Signup</button>\n  <button type=\"submit\" id=\"login-btn\" class=\"btn\">Login</button>\n</form>";
-  },"useData":true});
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "<form id=\"loginForm\" data-route=\"/login\">\n  <div class=\"form-group\">\n    <input id=\"username\" name=\"username\" placeholder=\"Username\" class=\"form-control login-input\" value=\""
+    + escapeExpression(((helper = (helper = helpers.username || (depth0 != null ? depth0.username : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"username","hash":{},"data":data}) : helper)))
+    + "\"/>\n  </div>\n  <div class=\"form-group\">\n    <input id=\"password\" name=\"password\" type=\"password\" placeholder=\"Password\" class=\"form-control login-input\" value=\""
+    + escapeExpression(((helper = (helper = helpers.password || (depth0 != null ? depth0.password : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"password","hash":{},"data":data}) : helper)))
+    + "\"/>\n  </div>\n  <button id=\"signup-btn\" class=\"btn\">Signup</button>\n  <button type=\"submit\" id=\"login-btn\" class=\"btn\">Login</button>\n</form>";
+},"useData":true});
 templates['post-create'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<div id=\"create-post\">\n    <div class=\"form-group\">\n        <input type=\"text\" class=\"form-control\" id=\"title\" placeholder=\"Title\">\n    </div>\n    <div class=\"form-group\">\n        <label for=\"content\">Content</label>\n        <div id=\"editor-container\">\n            <textarea id=\"editor\" name=\"editor\"></textarea>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label for=\"tags\">Tags</label>\n        <input type=\"text\" class=\"form-control\" id=\"tags\" placeholder=\"Content...\" data-role=\"tagsinput\"/ >\n    </div>\n    <div class=\"form-group\">\n        <label for=\"title\">Share</label>\n        <input type=\"text\" class=\"form-control\" id=\"shared\" placeholder=\"Enter users to share with... \">\n    </div>\n    <button id=\"submit-create-btn\" class=\"btn\">Create</button> \n</div>";
   },"useData":true});
@@ -187,8 +192,13 @@ templates['shared-post-min'] = template({"1":function(depth0,helpers,partials,da
   return buffer;
 },"usePartial":true,"useData":true});
 templates['signup'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<form action=\"/signup\" method=\"post\" id=\"loginForm\">\n  <div class=\"form-group\">\n    <input id=\"username\" name=\"username\" placeholder=\"Username\" class=\"form-control login-input\"/>\n  </div>\n  <div class=\"form-group\">\n    <input id=\"password\" name=\"password\" type=\"password\" placeholder=\"Password\" class=\"form-control login-input\"/>\n  </div>\n  <div class=\"form-group\">\n    <input id=\"confirmPassword\" name=\"confirmPassword\" type=\"password\" placeholder=\"Confirm Password\" class=\"form-control login-input\"/>\n  </div>\n  <button type=\"submit\" id=\"signup-btn\" class=\"btn\">Signup</button>\n  <button id=\"login-btn\" class=\"btn\">Login</button>\n</form>";
-  },"useData":true});
+  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  return "<form id=\"loginForm\" data-route=\"/signup\">\n  <div class=\"form-group\">\n    <input id=\"username\" name=\"username\" placeholder=\"Username\" class=\"form-control login-input\" value=\""
+    + escapeExpression(((helper = (helper = helpers.username || (depth0 != null ? depth0.username : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"username","hash":{},"data":data}) : helper)))
+    + "\"/>\n  </div>\n  <div class=\"form-group\">\n    <input id=\"password\" name=\"password\" type=\"password\" placeholder=\"Password\" class=\"form-control login-input\" value=\""
+    + escapeExpression(((helper = (helper = helpers.password || (depth0 != null ? depth0.password : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"password","hash":{},"data":data}) : helper)))
+    + "\"/>\n  </div>\n  <div class=\"form-group\">\n    <input id=\"confirmPassword\" name=\"confirmPassword\" type=\"password\" placeholder=\"Confirm Password\" class=\"form-control login-input\"/>\n  </div>\n  <button type=\"submit\" id=\"signup-btn\" class=\"btn\">Signup</button>\n  <button id=\"login-btn\" class=\"btn\">Login</button>\n</form>";
+},"useData":true});
 templates['tag'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var lambda=this.lambda, escapeExpression=this.escapeExpression;
   return "<span class=\"tag tag-"
