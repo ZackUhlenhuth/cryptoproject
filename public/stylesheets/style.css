@@ -22,10 +22,12 @@ body {
   body nav .input-group, body nav .input-group-btn {
     border-radius: 0; }
   body #login {
+    position: relative;
+    border: 1px #333 solid;
     margin: 0 auto;
     background: #333;
     padding: 60px 20px;
-    width: 340px;
+    width: 342px;
     height: 70vh;
     text-align: center; }
     body #login h1 {
@@ -44,9 +46,15 @@ body {
       width: 140px;
       border-radius: 0;
       font-family: 'Oswald';
-      text-transform: uppercase; }
+      text-transform: uppercase;
+      background-color: #ddd; }
     body #login #signup-btn {
       margin-right: 20px; }
+    body #login #page-turn-img {
+      right: 0;
+      top: 0;
+      width: 30px;
+      position: absolute; }
   body .post-min {
     background-color: #fff;
     padding: 5px 10px;
