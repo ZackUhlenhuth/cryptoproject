@@ -1,8 +1,11 @@
 var cryptico = require('cryptico-js');
 
-function decryptCiphertext(ciphertext, password) {
-    var RSAKey = cryptico.generateRSAKey(password, 1024);
-    return cryptico.decrypt(ciphertext, RSAKey);
+function decryptCiphertext(post, password) {
+    var ciphertext = post.content;
+    var plaintext = cryptico.decrypt(ciphertext, cryptico.generateRSAKey("asdf", 1024)).plaintext;
+    loadElement("#right-pane", "post-full", post);
+    $("#plaintext").html(plaintext);
+    $("#decrypt-modal-" + post._id).modal("hide");
 }
 
 $(document).ready(function() {
@@ -71,7 +74,7 @@ $(document).ready(function() {
 
     $(document).on('click', '.decrypt-post-submit', function(e) {
         var postId = $(this).data("post-id");
-        decryptPost(postId);
+        decryptSharedPost(postId);
     });
 
     $(document).on('click', '.shared-decrypt-post-submit', function(e) {
@@ -99,7 +102,7 @@ $(document).ready(function() {
         var formData = getFormData('#decrypt-form-' + postId);
         var password = formData.password;
         $.ajax({
-            url: '/posts/shared' + postId,
+            url: '/posts/shared/' + postId,
             type: 'GET',
             success: function(post) {
                 decryptCiphertext(post, password);
