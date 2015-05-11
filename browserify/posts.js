@@ -74,6 +74,11 @@ $(document).ready(function() {
         decryptPost(postId);
     });
 
+    $(document).on('click', '.shared-decrypt-post-submit', function(e) {
+        var postId = $(this).data("post-id");
+        decryptPost(postId);
+    });
+
     function decryptPost(postId) {
         var formData = getFormData('#decrypt-form-' + postId);
         var password = formData.password;

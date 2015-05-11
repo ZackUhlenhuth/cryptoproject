@@ -158,7 +158,7 @@ templates['shared-decrypt-modal'] = template({"1":function(depth0,helpers,partia
     + "\">\n                    <div class=\"form-group\">\n                        <label class=\"col-lg-2 control-label\" for=\"password\">Password</label>\n                        <div class=\"col-lg-10\">\n                            <input class=\"form-control\" type='password' name='password' required/>\n                        </div>\n                    </div>\n";
   stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.hint : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "                </form>\n            </div>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn\" data-dismiss=\"modal\">Close</button>\n                <button type=\"button\" class=\"decrypt-post-submit btn\" data-post-id="
+  return buffer + "                </form>\n            </div>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn\" data-dismiss=\"modal\">Close</button>\n                <button type=\"button\" class=\"shared-decrypt-post-submit btn\" data-post-id="
     + escapeExpression(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"_id","hash":{},"data":data}) : helper)))
     + ">Decrypt</button>\n            </div>\n        </div>\n    </div>\n</div>";
 },"useData":true});
@@ -182,7 +182,7 @@ templates['shared-post-min'] = template({"1":function(depth0,helpers,partials,da
     + " by "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.author : depth0)) != null ? stack1.username : stack1), depth0))
     + "</p>\n</div>\n";
-  stack1 = this.invokePartial(partials['decrypt-modal'], '', 'decrypt-modal', depth0, undefined, helpers, partials, data);
+  stack1 = this.invokePartial(partials['shared-decrypt-modal'], '', 'shared-decrypt-modal', depth0, undefined, helpers, partials, data);
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"usePartial":true,"useData":true});
