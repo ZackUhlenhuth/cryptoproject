@@ -20471,20 +20471,6 @@ $(document).ready(function() {
         return re.test(word);
     }
 
-    // calculate MAC, check authenticity
-    $("#checkMAC").click(function() {
-        var password = $('#decryptPassword').val();
-        var ciphertext = $('#ciphertext').text();
-        var oldMAC = $("#oldMAC").val();
-        var mac_hex = HMAC_SHA256_MAC(password, ciphertext);
-        var isMatched = compareMACs(oldMAC, mac_hex);
-        if (isMatched){
-            $("#macComparison").text("MAC verified! Click Decrypt!");
-        }else{
-            $("#macComparison").text("MAC doesn't match!");
-        }
-    });
-
     $(document).on('click', '.post-min', function(e) {
         var postId = $(this).data("post-id");
         $.ajax({
@@ -20511,12 +20497,12 @@ $(document).ready(function() {
 
     $(document).on('click', '.shared-decrypt-post-submit', function(e) {
         var postId = $(this).data("post-id");
-        decryptSharedPost(postId);
+        decryptPost(postId);
     });
 
     $(document).on('click', '.decrypt-post-submit', function(e) {
         var postId = $(this).data("post-id");
-        decryptPost(postId);
+        decryptSharedPost(postId);
     });
 
     function decryptPost(postId) {
@@ -20576,13 +20562,6 @@ $(document).ready(function() {
             }
         });
     });
-
-
-    // $(document).on('click', '.post-full', function(e) {
-    //     var ciphertext = $(this).find("p").first().text();
-    //     $('#decryptPost').modal('show');
-    //     $('#ciphertext').text(ciphertext);
-    // });
 
     // SEARCH
 

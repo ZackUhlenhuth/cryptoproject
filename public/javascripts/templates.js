@@ -20,7 +20,7 @@ templates['decrypt-modal'] = template({"1":function(depth0,helpers,partials,data
     + ">Decrypt</button>\n            </div>\n        </div>\n    </div>\n</div>";
 },"useData":true});
 templates['encrypt-modal'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return "<div id=\"encrypt-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"encryptModalLabel\" aria-hidden=\"true\" class=\"modal fade\">\n    <div class=\"modal-dialog\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header\">\n                <button class=\"close\" type=\"button\", data-dismiss=\"modal\", aria-hidden=\"true\">&times;</button>\n                <h4 id=\"encryptModalLabel\" class=\"modal-title\">Encrypt post</h4>\n            </div>\n            <div class=\"modal-body\">\n                <div id=\"modal-error\"></div>\n                <form id='encrypt-form' class=\"form-horizontal\" role=\"form\">\n                    <div class=\"form-group\">\n                        <label class=\"col-lg-2 control-label\" for=\"password\">Password</label>\n                        <div class=\"col-lg-10\">\n                            <input class=\"form-control\" type='password' name='password' required/>\n                        </div>\n                    </div>\n                    <div class=\"form-group\">\n                        <label class=\"col-lg-2 control-label\" for=\"confirm-password\">Confirm Password</label>\n                        <div class=\"col-lg-10\">\n                            <input class=\"form-control\" type='password' name='confirm-password' required/>\n                        </div>\n                    </div>\n                    <div class=\"form-group\">\n                        <label class=\"col-lg-2 control-label\" for=\"hint\">Hint</label>\n                        <div class=\"col-lg-10\">\n                            <input class=\"form-control\" type='text' name='hint'/>\n                            <p class=\"help-block\">Example block-level help text here.</p>\n                        </div>\n                    </div>\n                </form>\n            </div>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn\" data-dismiss=\"modal\">Close</button>\n                <button id=\"new-post-submit\" type=\"button\" class=\"btn\">Create</button>\n            </div>\n        </div>\n    </div>\n</div>";
+  return "<div id=\"encrypt-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"encryptModalLabel\" aria-hidden=\"true\" class=\"modal fade\">\n    <div class=\"modal-dialog\">\n        <div class=\"modal-content\">\n            <div class=\"modal-header\">\n                <button class=\"close\" type=\"button\", data-dismiss=\"modal\", aria-hidden=\"true\">&times;</button>\n                <h4 id=\"encryptModalLabel\" class=\"modal-title\">Encrypt post</h4>\n            </div>\n            <div class=\"modal-body\">\n                <div id=\"modal-error\"></div>\n                <form id='encrypt-form' class=\"form-horizontal\" role=\"form\">\n                    <div class=\"form-group\">\n                        <label class=\"col-lg-2 control-label\" for=\"password\">Password</label>\n                        <div class=\"col-lg-10\">\n                            <input class=\"form-control\" type='password' name='password' required/>\n                        </div>\n                    </div>\n                    <div class=\"form-group\">\n                        <label class=\"col-lg-2 control-label\" for=\"confirm-password\">Confirm Password</label>\n                        <div class=\"col-lg-10\">\n                            <input class=\"form-control\" type='password' name='confirm-password' required/>\n                        </div>\n                    </div>\n                    <div class=\"form-group\">\n                        <label class=\"col-lg-2 control-label\" for=\"hint\">Hint (optional)</label>\n                        <div class=\"col-lg-10\">\n                            <input class=\"form-control\" type='text' name='hint'/>\n                            <p class=\"help-block\">Include a hint to help remember your password. If you forget your password, you will not be able to decrypt your post as the password is not stored!</p>\n                        </div>\n                    </div>\n                </form>\n            </div>\n            <div class=\"modal-footer\">\n                <button type=\"button\" class=\"btn\" data-dismiss=\"modal\">Close</button>\n                <button id=\"new-post-submit\" type=\"button\" class=\"btn\">Create</button>\n            </div>\n        </div>\n    </div>\n</div>";
   },"useData":true});
 templates['error'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
@@ -78,10 +78,10 @@ templates['post-full'] = template({"1":function(depth0,helpers,partials,data) {
     + escapeExpression(((helpers.formatDate || (depth0 && depth0.formatDate) || helperMissing).call(depth0, (depth0 != null ? depth0.date : depth0), {"name":"formatDate","hash":{},"data":data})))
     + " by "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.author : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</p>\n </div>";
+    + "</p>\n    <button class=\"btn btn-danger\">DELETE</button>\n </div>";
 },"usePartial":true,"useData":true});
 templates['post-instructions'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  return " <div id=\"post-instructions\" class=\"post-full\">\n    <h1>How to Use CryptoBook</h1>\n    <p id=\"plaintext\">Lalalala</p>\n </div>";
+  return " <div id=\"post-instructions\" class=\"post-full\">\n    <h1>How to Use CryptoBook</h1>\n    <p>To create a new post: click 'Create' in the top right corner, fill in the fields on the resulting page and click the new 'Create' button at the bottom to pop out the encryption dialog</p>\n    <p>In the following dialog, create a password and a hint to remember the password</p>\n    <p>To view encrypted messages: click the message in the left pane, enter the password you encrypted the post with and click 'Decrypt'</p>\n\n\n\n\n </div>";
 },"useData":true});
 templates['post-menu'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, buffer = "<div id=\"post-menu\">\n    <button id=\"my-posts\" class=\"post-menu-btn btn\">My Posts</button>\n    <button id=\"shared-posts\" class=\"post-menu-btn btn\">Shared With Me</button>\n    <div id=\"posts\">\n";
@@ -129,7 +129,7 @@ templates['posts'] = template({"1":function(depth0,helpers,partials,data) {
   return buffer;
 },"2":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
-  stack1 = this.invokePartial(partials['post-min'], '        ', 'post-min', depth0, undefined, helpers, partials, data);
+  stack1 = this.invokePartial(partials['shared-post-min'], '        ', 'shared-post-min', depth0, undefined, helpers, partials, data);
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"4":function(depth0,helpers,partials,data) {
@@ -139,7 +139,7 @@ templates['posts'] = template({"1":function(depth0,helpers,partials,data) {
   return buffer;
 },"5":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
-  stack1 = this.invokePartial(partials['shared-post-min'], '        ', 'shared-post-min', depth0, undefined, helpers, partials, data);
+  stack1 = this.invokePartial(partials['post-min'], '        ', 'post-min', depth0, undefined, helpers, partials, data);
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
