@@ -21,11 +21,23 @@ body {
       border-radius: 0; }
     body #login #signup-btn {
       margin-right: 20px; }
-  body .post-min, body .post-full {
+  body .post-min {
     background-color: #fff;
     padding: 5px 10px;
     margin: 5px 10px; }
-  body #post-menu, body .post-full {
+  body .post-full {
+    padding: 5px 10px;
+    background-color: #fff;
+    height: 85vh;
+    overflow: auto; }
+  body .post-menu-btn {
+    width: 50%;
+    margin: 0 -1px 5px -1px;
+    border-radius: 0;
+    background-color: #1A237E;
+    color: #fff; }
+  body #post-menu {
+    background: #ccc;
     height: 85vh;
     overflow: auto; }
   body .tag {

@@ -78,7 +78,7 @@ templates['post-menu'] = template({"1":function(depth0,helpers,partials,data) {
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<div id=\"post-menu\">\n";
+  var stack1, buffer = "<div id=\"post-menu\">\n    <button id=\"my-posts\" class=\"post-menu-btn btn\">My Posts</button>\n    <button id=\"shared-posts\" class=\"post-menu-btn btn\">Shared With Me</button>\n";
   stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.posts : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "</div>";

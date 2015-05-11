@@ -37,15 +37,32 @@ body {
       }
     }
 
-    .post-min, .post-full {
+    .post-min {
         background-color: #fff;
         padding: 5px 10px;
         margin: 5px 10px;
     }
 
-    #post-menu, .post-full {
+    .post-full {
+      padding: 5px 10px;
+      background-color: #fff;
       height: 85vh;
       overflow: auto;
+    }
+
+    .post-menu-btn {
+      width: 50%;
+      margin: 0 -1px 5px -1px;
+      border-radius: 0;
+      background-color: $dark;
+      color: #fff;
+    }
+    #post-menu {
+      background: #ccc;
+      height: 85vh;
+      overflow: auto;
+
+
     }
 
     .tag {
