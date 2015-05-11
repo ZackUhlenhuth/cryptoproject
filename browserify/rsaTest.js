@@ -1,3 +1,14 @@
+var cryptico = require('cryptico-js');
+
+function encryptPlaintext(plaintext, publicKey) {
+    return cryptico.encrypt(plaintext, publicKey).cipher;
+}
+
+function decryptCiphertext(ciphertext, password) {
+    var RSAKey = cryptico.generateRSAKey(password, 1024);
+    return cryptico.decrypt(ciphertext, RSAKey);
+}
+
 $(document).ready(function() {
 
     var index = 0;
@@ -542,22 +553,48 @@ $(document).ready(function() {
             var title = $("#title").val().trim();
             var ciphertext = Aes.Ctr.encrypt(plaintext, password, 256);
             var tags = $("#tags").tagit("assignedTags");
-            var mac_hex = HMAC_SHA256_MAC(password, ciphertext);
-            console.log(ciphertext);
+            var sharedUsers = $("#shared").tagit("assignedTags");
+            console.log(shared);
+
             $.ajax({
-                url: "/posts/",
-                type: 'POST',
-                data: {
-                    title: title,
-                    content: ciphertext,
-                    hint: hint,
-                    tags: tags, 
-                    _csrf: csrf,
-                    mac_hex: mac_hex
-                },
-                success: function(post) {
-                    $("#encrypt-modal").modal("hide");
-                    window.location.href = "/main"
+                url: "/users/publicKeys",
+                type: 'GET',
+                success: function(publicKeys) {
+                    var sharedCiphers = {};
+
+                    $.ajax({
+                        url: "/posts/",
+                        type: 'POST',
+                        data: {
+                            title: title,
+                            content: ciphertext,
+                            hint: hint,
+                            tags: tags,
+                            _csrf: csrf
+                        },
+                        success: function(post) {
+                            $("#encrypt-modal").modal("hide");
+                            window.location.href = "/main"
+                        },
+                        error: function(jqXHR, textStatus, err) {
+                            console.log(jqXHR.responseText);
+                        }
+                    });   
+
+                    $.each(sharedUsers, function(item, usr) {
+                        $.ajax({
+                            url: "/posts/shared",
+                            type: 'POST',
+                            data: {
+                                title: title,
+                                sharedWith: usr,
+                                content: encryptPlaintext(plaintext, publicKeys[usr]),
+                                hint: hint,
+                                tags: tags,
+                                _csrf: csrf
+                            }                        
+                        });   
+                    })
                 },
                 error: function(jqXHR, textStatus, err) {
                     console.log(jqXHR.responseText);

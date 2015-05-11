@@ -1,4 +1,6 @@
+var Users = require('../models/user');
 var Post = require('../models/post');
+var SharedPost = require('../models/sharedPost');
 var moment = require('moment');
 
 var posts = {};
@@ -29,6 +31,20 @@ posts.showAll = function(req, res) {
     });
 }
 
+posts.showAllShared = function(req, res) {
+    Post.find({sharedWith: req.user._id}, null, {sort: {date: -1}})
+    .populate('author', 'username')
+    .populate('sharedWith', 'username')
+    .exec(function(err, posts) {
+        if (err) {
+            res.status(err.statusCode || 500).send(err);
+            return;
+        }
+        res.status(200).send(posts);
+    });
+}
+
+
 posts.create = function(req, res) {
     var postObj = {
         author: req.user._id,
@@ -52,6 +68,36 @@ posts.create = function(req, res) {
                 }
             });
         }
+    });
+}
+
+posts.createShared = function(req, res) {
+
+    Users.findOne({username : req.body.sharedWith}, function(err, user) {
+
+        var sharedPostObj = {
+            author: req.user._id,
+            sharedWith: user,
+            title: req.body.title,
+            content: req.body.content,
+            tags: req.body['tags[]'],
+            date: moment(),
+        };
+
+        SharedPost.create(sharedPostObj, function(err, post) {
+            if (err) {
+                res.status(err.statusCode || 500).send(err);
+                return;
+            } else{
+                post.populate('author', 'username', function(err, populatedPost) {
+                    if (err) {
+                        res.status(err.statusCode || 500).send(err);
+                    } else{
+                        res.status(201).send(populatedPost);
+                    }
+                });
+            }
+        });
     });
 }
 
