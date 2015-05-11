@@ -6,6 +6,8 @@ var isAuthorized = require('../utils/auth');
 /* GET users listing. */
 router.get('/shared', isAuthorized, posts.showAllShared);
 
+router.get('/shared/:id', isAuthorized, posts.showShared);
+
 router.get('/:id', isAuthorized, posts.show);
 
 router.get('/', isAuthorized, posts.showAll);

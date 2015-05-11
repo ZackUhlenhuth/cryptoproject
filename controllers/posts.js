@@ -19,6 +19,22 @@ posts.show = function(req, res) {
     });
 }
 
+posts.showShared = function(req, res) {
+    SharedPost.find({
+        sharedWith: req.user._id,
+        _id: req.params.id
+    }).populate('author', 'username')
+    .populate('sharedWith', 'username')
+    .exec(function(err, posts) {
+        if (err) {
+            res.status(err.statusCode || 500).send(err);
+            return;
+        }
+        res.status(200).send(posts[0]);
+    });
+}
+
+
 posts.showAll = function(req, res) {
     Post.find({author: req.user._id}, null, {sort: {date: -1}})
     .populate('author', 'username')
@@ -32,7 +48,7 @@ posts.showAll = function(req, res) {
 }
 
 posts.showAllShared = function(req, res) {
-    Post.find({sharedWith: req.user._id}, null, {sort: {date: -1}})
+    SharedPost.find({sharedWith: req.user._id}, null, {sort: {date: -1}})
     .populate('author', 'username')
     .populate('sharedWith', 'username')
     .exec(function(err, posts) {
