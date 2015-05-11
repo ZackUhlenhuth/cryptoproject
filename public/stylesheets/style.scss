@@ -1,24 +1,63 @@
 @import '_constants';
 
 body {
+    font-family: 'Roboto';
     background-color: #eee;
     padding-top: 70px;
 
+
+    .navbar-gray {
+      background-color: #333;
+      color: #fff;
+
+      .navbar-brand {
+        color: #fff;
+      }
+
+      li {
+        background-color: transparent;
+
+        a, a:hover {
+          background-color: transparent;
+          color: #fff;
+        }
+
+        a:hover {
+          color: #ccc;
+        }
+      }
+    }
+
     nav {
+
+      .navbar-brand {
+        font-family: 'Oswald';
+        text-transform: uppercase;
+      }
+
       .fa {
         margin-right: 5px;
+      }
+
+      .input-group, .input-group-btn {
+        border-radius: 0;
       }
     }
 
     // login
     #login {
+      position: relative;
+      border: 1px #333 solid;
       margin: 0 auto;
       background: #333;
-      padding: 30px 20px;
-      width: 340px;
+      padding: 60px 20px;
+      width: 342px;
+      height: 70vh;
       text-align: center;
 
       h1 {
+        font-family: 'Oswald';
+        text-transform: uppercase;
         margin: 20px auto;
         color: #fff;
       }
@@ -31,15 +70,26 @@ body {
 
       .login-input {
         border-radius: 0;
+        font-size: 0.8em; 
       }
 
       #login-btn, #signup-btn {
         width: 140px;
         border-radius: 0;
+        font-family: 'Oswald';
+        text-transform: uppercase;
+        background-color: #ddd;
       }
 
       #signup-btn{
         margin-right: 20px;
+      }
+
+      #page-turn-img {
+        right: 0;
+        top: 0;
+        width: 30px;
+        position: absolute;
       }
     }
 
@@ -56,13 +106,25 @@ body {
       overflow: auto;
     }
 
-    .post-menu-btn {
+    .post-menu-btn, .post-menu-btn:hover {
+      font-weight: 300;
+      font-family: 'Oswald';
+      text-transform: uppercase;
       width: 50%;
       margin: 0 -1px 5px -1px;
       border-radius: 0;
       background-color: $dark;
       color: #fff;
     }
+
+    .post-menu-btn:focus {
+      color: #ccc;
+    }
+
+    .post-menu-btn:hover {
+      background-color: $hover;
+    }
+
     #post-menu {
       background: #ccc;
       height: 85vh;
@@ -84,6 +146,14 @@ body {
       .blurry-text {
         color: transparent;
         text-shadow: 0 0 5px rgba(0,0,0,0.5);
+      }
+
+      #lock {
+        position: absolute;
+        margin: 50px auto;
+        font-size: 150px;
+        text-align: center;
+        width: 90%
       }
     }
 
