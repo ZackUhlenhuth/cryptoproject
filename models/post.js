@@ -10,6 +10,7 @@ var postSchema = mongoose.Schema({
     date: {type: Date, required: true},
     tags: [{type: String}],
     hint: {type: String},
+    mac_hex: {type: String, required: true},
     shared: [{type: objectId, ref: 'SharedPost'}]
 });
 

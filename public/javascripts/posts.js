@@ -13,7 +13,12 @@ $(document).ready(function() {
     var decryptContent = function(post, password, callback) {
         var plaintext = Aes.Ctr.decrypt(post.content, password, 256);
         console.log(checkValidPlaintext(plaintext));
+        current_mac_hex = HMAC_SHA256_MAC(password, post.content);
         if (checkValidPlaintext(plaintext)) {
+            //if the MAC does not match, alert the user
+            if (!compareMACs(current_mac_hex, post.mac_hex)){
+                alert("This post's integrity may have been compromised!");
+            }
             loadElement("#right-pane", "post-full", post);
             $("#plaintext").html(plaintext);
             $("#decrypt-modal-" + post._id).modal("hide");

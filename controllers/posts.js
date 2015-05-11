@@ -36,6 +36,7 @@ posts.create = function(req, res) {
         content: req.body.content,
         tags: req.body['tags[]'],
         date: moment(),
+        mac_hex: req.body.mac_hex,
         hint: req.body.hint,
     };
     Post.create(postObj, function(err, post) {

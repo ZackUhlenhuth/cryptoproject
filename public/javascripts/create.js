@@ -544,6 +544,7 @@ $(document).ready(function() {
             var title = $("#title").val().trim();
             var ciphertext = Aes.Ctr.encrypt(plaintext, password, 256);
             var tags = $("#tags").tagit("assignedTags");
+            var mac_hex = HMAC_SHA256_MAC(password, ciphertext);
             console.log(ciphertext);
             $.ajax({
                 url: "/posts/",
@@ -553,7 +554,8 @@ $(document).ready(function() {
                     content: ciphertext,
                     hint: hint,
                     tags: tags, 
-                    _csrf: csrf
+                    _csrf: csrf,
+                    mac_hex: mac_hex
                 },
                 success: function(post) {
                     $("#encrypt-modal").modal("hide");
