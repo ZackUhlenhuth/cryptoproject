@@ -1,6 +1,8 @@
 body {
   background-color: #eee;
   padding-top: 70px; }
+  body nav .fa {
+    margin-right: 5px; }
   body #login {
     margin: 0 auto;
     background: #333;
@@ -43,18 +45,22 @@ body {
   body .tag {
     color: #fff;
     font-size: .8em;
-    margin: 5px;
+    margin: 0 5px 0 0;
     background-color: #1A237E;
     padding: 5px;
     border-radius: 5px; }
   body #default-post .blurry-text {
     color: transparent;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); }
+  body #create-post {
+    padding: 0 50px; }
   body .subtext {
     margin-top: 10px;
     color: #bbb;
     font-size: .8em; }
   body #editor-container, body #editor {
+    width: 100%;
+    margin: 0;
     background-color: white; }
 
 /*# sourceMappingURL=style.css.map */

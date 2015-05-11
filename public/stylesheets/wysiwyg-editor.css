@@ -27,7 +27,7 @@
 }
 .wysiwyg-editor {
     position: relative;
-    min-height: 5em;
+    min-height: 20em;
     /*max-height: 25em;*/
     padding: 10px;
     overflow: auto;

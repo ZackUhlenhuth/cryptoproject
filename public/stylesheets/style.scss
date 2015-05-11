@@ -4,6 +4,12 @@ body {
     background-color: #eee;
     padding-top: 70px;
 
+    nav {
+      .fa {
+        margin-right: 5px;
+      }
+    }
+
     // login
     #login {
       margin: 0 auto;
@@ -68,7 +74,7 @@ body {
     .tag {
       color: #fff;
       font-size: .8em;
-      margin: 5px;
+      margin: 0 5px 0 0;
       background-color: $dark;
       padding: 5px;
       border-radius: 5px;
@@ -81,6 +87,10 @@ body {
       }
     }
 
+    #create-post {
+      padding: 0 50px;
+    }
+
     .subtext {
       margin-top: 10px;
       color: #bbb;
@@ -88,6 +98,8 @@ body {
     }
 
     #editor-container, #editor {
+      width: 100%;
+      margin: 0;
       background-color: white;
     }
 }
