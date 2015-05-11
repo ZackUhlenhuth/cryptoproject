@@ -1,9 +1,9 @@
-<form action="/login" method="post" id="loginForm">
+<form id="loginForm" data-route="/login">
   <div class="form-group">
-    <input id="username" name="username" placeholder="Username" class="form-control login-input"/>
+    <input id="username" name="username" placeholder="Username" class="form-control login-input" value="{{username}}"/>
   </div>
   <div class="form-group">
-    <input id="password" name="password" type="password" placeholder="Password" class="form-control login-input"/>
+    <input id="password" name="password" type="password" placeholder="Password" class="form-control login-input" value="{{password}}"/>
   </div>
   <button id="signup-btn" class="btn">Signup</button>
   <button type="submit" id="login-btn" class="btn">Login</button>

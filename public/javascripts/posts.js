@@ -88,6 +88,7 @@ $(document).ready(function() {
             type: 'GET',
             success: function(post) {
                 decryptContent(post, password);
+                console.log(post.content);
                 $("#password").val("");
             },
             error: function(jqXHR, textStatus, err) {

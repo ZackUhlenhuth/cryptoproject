@@ -9,6 +9,8 @@ Handlebars.registerPartial('post-default', Handlebars.templates['post-default'])
 Handlebars.registerPartial('posts', Handlebars.templates['posts']);
 Handlebars.registerPartial('shared-post-min', Handlebars.templates['shared-post-min']);
 Handlebars.registerPartial('shared-decrypt-modal', Handlebars.templates['shared-decrypt-modal']);
+Handlebars.registerPartial('login', Handlebars.templates['login']);
+Handlebars.registerPartial('intro', Handlebars.templates['intro']);
 
 Handlebars.registerHelper('formatDate', function(date) {
     return moment(date).fromNow();

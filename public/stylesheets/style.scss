@@ -54,18 +54,22 @@ body {
       width: 342px;
       height: 70vh;
       text-align: center;
+      color: #fff;
 
       h1 {
         font-family: 'Oswald';
         text-transform: uppercase;
         margin: 20px auto;
-        color: #fff;
       }
 
       h5 {
         margin-bottom: 20px;
         color: #ddd;
         font-style: italic;
+      }
+
+      #content {
+        margin: -2px;
       }
 
       .login-input {
@@ -79,6 +83,7 @@ body {
         font-family: 'Oswald';
         text-transform: uppercase;
         background-color: #ddd;
+        color: #333;
       }
 
       #signup-btn{
@@ -90,6 +95,7 @@ body {
         top: 0;
         width: 30px;
         position: absolute;
+        cursor: pointer;
       }
     }
 
