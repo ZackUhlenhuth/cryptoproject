@@ -24,7 +24,11 @@ $(document).ready(function() {
         if (checkValidPlaintext(plaintext)) {
             //if the MAC does not match, alert the user
             if (!compareMACs(current_mac_hex, post.mac_hex)){
-                alert("This post's integrity may have been compromised!");
+                var data_error = "This post's integrity may have been compromised!"
+                alert(data_error);
+                post.error = {
+                    message: data_error,
+                };
             }
             loadElement("#right-pane", "post-full", post);
             $("#plaintext").html(plaintext);

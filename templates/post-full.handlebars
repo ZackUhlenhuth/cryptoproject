@@ -1,4 +1,9 @@
  <div id="post-full-{{_id}}" class="post-full">
+    <div id="post-error">
+        {{#if error}}
+            {{> error error}}
+        {{/if}}
+    </div>
     <h1>{{title}}</h1>
     <p id="plaintext">{{plaintext}}</p>
     <div>
@@ -7,5 +12,5 @@
         {{/each}}
     </div>
     <p class="subtext">Posted {{formatDate date}} by {{author.username}}</p>
-    <button class="btn btn-danger">DELETE</button>
+    {{!-- <button class="btn btn-danger">DELETE</button> --}}
  </div>

@@ -61,24 +61,32 @@ templates['post-default'] = template({"1":function(depth0,helpers,partials,data)
 },"usePartial":true,"useData":true});
 templates['post-full'] = template({"1":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
+  stack1 = this.invokePartial(partials.error, '            ', 'error', (depth0 != null ? depth0.error : depth0), undefined, helpers, partials, data);
+  if (stack1 != null) { buffer += stack1; }
+  return buffer;
+},"3":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "";
   stack1 = this.invokePartial(partials.tag, '            ', 'tag', depth0, undefined, helpers, partials, data);
   if (stack1 != null) { buffer += stack1; }
   return buffer;
 },"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, lambda=this.lambda, buffer = " <div id=\"post-full-"
     + escapeExpression(((helper = (helper = helpers._id || (depth0 != null ? depth0._id : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"_id","hash":{},"data":data}) : helper)))
-    + "\" class=\"post-full\">\n    <h1>"
+    + "\" class=\"post-full\">\n    <div id=\"post-error\">\n";
+  stack1 = helpers['if'].call(depth0, (depth0 != null ? depth0.error : depth0), {"name":"if","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  buffer += "    </div>\n    <h1>"
     + escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"title","hash":{},"data":data}) : helper)))
     + "</h1>\n    <p id=\"plaintext\">"
     + escapeExpression(((helper = (helper = helpers.plaintext || (depth0 != null ? depth0.plaintext : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"plaintext","hash":{},"data":data}) : helper)))
     + "</p>\n    <div>\n";
-  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.tags : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.tags : depth0), {"name":"each","hash":{},"fn":this.program(3, data),"inverse":this.noop,"data":data});
   if (stack1 != null) { buffer += stack1; }
   return buffer + "    </div>\n    <p class=\"subtext\">Posted "
     + escapeExpression(((helpers.formatDate || (depth0 && depth0.formatDate) || helperMissing).call(depth0, (depth0 != null ? depth0.date : depth0), {"name":"formatDate","hash":{},"data":data})))
     + " by "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.author : depth0)) != null ? stack1.username : stack1), depth0))
-    + "</p>\n    <button class=\"btn btn-danger\">DELETE</button>\n </div>";
+    + "</p>\n </div>";
 },"usePartial":true,"useData":true});
 templates['post-instructions'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return " <div id=\"post-instructions\" class=\"post-full\">\n    <h1>How to Use CryptoBook</h1>\n    <p>To create a new post: click 'Create' in the top right corner, fill in the fields on the resulting page and click the new 'Create' button at the bottom to pop out the encryption dialog</p>\n    <p>In the following dialog, create a password and a hint to remember the password</p>\n    <p>To view encrypted messages: click the message in the left pane, enter the password you encrypted the post with and click 'Decrypt'</p>\n\n\n\n\n </div>";
