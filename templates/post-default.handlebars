@@ -1,0 +1,14 @@
+ <div id="default-post" class="post-full">
+    <h1>{{title}}</h1>
+    <p class="blurry-text">
+    Lorem ipsum dolor sit amet, mei nostro vulputate ex. Dicat euismod pericula nam ad. Eam iusto nusquam docendi in, id omnes libris mollis sed. Duis consequat mea et, amet incorrupte vim ut. Libris ornatus fierent ea vix. Quo ad eius facete delicata, sea modus nominavi detraxit ea, nec vidisse voluptua molestiae at. No mel agam aperiri, ut cetero virtute reformidans his, mei quas omittam splendide ex.</p>
+    <p class="blurry-text">Qui et posse integre sententiae. Sonet sententiae id per. Ad mandamus oportere efficiendi eum, duo cu recusabo rationibus, eu cum zril integre. Id movet labitur pro, et vim modo mutat utroque, ex nostro erroribus vis. Stet dolores et has, pro ad probo vocent laoreet.</p>
+    <p class="blurry-text">Dico voluptaria in pro, iuvaret salutandi prodesset ius in, ipsum doctus intellegebat eos an. Alterum forensibus voluptatum vim ut. Has propriae fabellas ei, recusabo assentior ei qui. In qui etiam putent omittam. Est an dolore atomorum, ut harum iusto necessitatibus est, eam id quis vulputate.</p>
+    <p class="blurry-text">Amet timeam persius an pro, saepe appellantur pri at, vix illud audiam voluptaria ad. Eruditi repudiandae cum an, cu vel magna impedit. Eum lucilius euripidis voluptatum cu, et vim imperdiet definitiones, ea sonet feugait partiendo vel. Ut esse graeco similique mei. Alterum adipisci cu mei.</p>
+    <div>
+        {{#each tags}}
+            {{> tag}}
+        {{/each}}
+    </div>
+    <p class="subtext">Posted {{formatDate date}} by {{author.username}}</p>
+ </div>

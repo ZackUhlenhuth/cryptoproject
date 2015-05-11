@@ -86,6 +86,8 @@ $(document).ready(function() {
             url: '/posts/' + postId,
             type: 'GET',
             success: function(post) {
+                loadElement("#right-pane", "post-default", post);
+
                 // addElement("#two-pane", "decrypt-modal", post);
                 $("#decrypt-modal-" + postId).modal();
                 // loadElement('#right-pane', 'post-full', post);

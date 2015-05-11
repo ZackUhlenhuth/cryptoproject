@@ -31,6 +31,23 @@ templates['error'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(
 templates['post-create'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   return "<div id=\"create-post\">\n    <div class=\"form-group\">\n        <label for=\"title\">Title</label>\n        <input type=\"text\" class=\"form-control\" id=\"title\" placeholder=\"Enter title... \">\n    </div>\n    <div class=\"form-group\">\n        <label for=\"content\">Content</label>\n        <div id=\"editor-container\" style=\"width:860px; margin: 30px auto;\">\n            <textarea id=\"editor\" name=\"editor\" placeholder=\"Type your text here...\">\n            Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua.\n            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n            Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n            </textarea>\n        </div>\n    </div>\n    <div class=\"form-group\">\n        <label for=\"tags\">Tags</label>\n        <input type=\"text\" class=\"form-control\" id=\"tags\" placeholder=\"Content...\" data-role=\"tagsinput\"/ >\n    </div>\n    <div class=\"form-group\">\n        <label for=\"title\">Share</label>\n        <input type=\"text\" class=\"form-control\" id=\"shared\" placeholder=\"Enter users to share with... \">\n    </div>\n    <button id=\"submit-create-btn\" class=\"btn\">Create</button> \n</div>";
   },"useData":true});
+templates['post-default'] = template({"1":function(depth0,helpers,partials,data) {
+  var stack1, buffer = "";
+  stack1 = this.invokePartial(partials.tag, '            ', 'tag', depth0, undefined, helpers, partials, data);
+  if (stack1 != null) { buffer += stack1; }
+  return buffer;
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  var stack1, helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, lambda=this.lambda, buffer = " <div id=\"default-post\" class=\"post-full\">\n    <h1>"
+    + escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"title","hash":{},"data":data}) : helper)))
+    + "</h1>\n    <p class=\"blurry-text\">\n    Lorem ipsum dolor sit amet, mei nostro vulputate ex. Dicat euismod pericula nam ad. Eam iusto nusquam docendi in, id omnes libris mollis sed. Duis consequat mea et, amet incorrupte vim ut. Libris ornatus fierent ea vix. Quo ad eius facete delicata, sea modus nominavi detraxit ea, nec vidisse voluptua molestiae at. No mel agam aperiri, ut cetero virtute reformidans his, mei quas omittam splendide ex.</p>\n    <p class=\"blurry-text\">Qui et posse integre sententiae. Sonet sententiae id per. Ad mandamus oportere efficiendi eum, duo cu recusabo rationibus, eu cum zril integre. Id movet labitur pro, et vim modo mutat utroque, ex nostro erroribus vis. Stet dolores et has, pro ad probo vocent laoreet.</p>\n    <p class=\"blurry-text\">Dico voluptaria in pro, iuvaret salutandi prodesset ius in, ipsum doctus intellegebat eos an. Alterum forensibus voluptatum vim ut. Has propriae fabellas ei, recusabo assentior ei qui. In qui etiam putent omittam. Est an dolore atomorum, ut harum iusto necessitatibus est, eam id quis vulputate.</p>\n    <p class=\"blurry-text\">Amet timeam persius an pro, saepe appellantur pri at, vix illud audiam voluptaria ad. Eruditi repudiandae cum an, cu vel magna impedit. Eum lucilius euripidis voluptatum cu, et vim imperdiet definitiones, ea sonet feugait partiendo vel. Ut esse graeco similique mei. Alterum adipisci cu mei.</p>\n    <div>\n";
+  stack1 = helpers.each.call(depth0, (depth0 != null ? depth0.tags : depth0), {"name":"each","hash":{},"fn":this.program(1, data),"inverse":this.noop,"data":data});
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "    </div>\n    <p class=\"subtext\">Posted "
+    + escapeExpression(((helpers.formatDate || (depth0 && depth0.formatDate) || helperMissing).call(depth0, (depth0 != null ? depth0.date : depth0), {"name":"formatDate","hash":{},"data":data})))
+    + " by "
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.author : depth0)) != null ? stack1.username : stack1), depth0))
+    + "</p>\n </div>";
+},"usePartial":true,"useData":true});
 templates['post-full'] = template({"1":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
   stack1 = this.invokePartial(partials.tag, '            ', 'tag', depth0, undefined, helpers, partials, data);
@@ -52,6 +69,9 @@ templates['post-full'] = template({"1":function(depth0,helpers,partials,data) {
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.author : depth0)) != null ? stack1.username : stack1), depth0))
     + "</p>\n </div>";
 },"usePartial":true,"useData":true});
+templates['post-instructions'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+  return " <div id=\"post-instructions\" class=\"post-full\">\n    <h1>How to Use CryptoBook</h1>\n    <p id=\"plaintext\">Lalalala</p>\n </div>";
+},"useData":true});
 templates['post-menu'] = template({"1":function(depth0,helpers,partials,data) {
   var stack1, buffer = "";
   stack1 = this.invokePartial(partials['post-min'], '        ', 'post-min', depth0, undefined, helpers, partials, data);
@@ -88,10 +108,13 @@ templates['post-min'] = template({"1":function(depth0,helpers,partials,data) {
   return buffer;
 },"usePartial":true,"useData":true});
 templates['posts'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var stack1, buffer = "<div id=\"left-pane\" class=\"col-sm-3\">\n";
+  var stack1, buffer = "<div id=\"left-pane\" class=\"col-sm-4\">\n";
   stack1 = this.invokePartial(partials['post-menu'], '    ', 'post-menu', depth0, undefined, helpers, partials, data);
   if (stack1 != null) { buffer += stack1; }
-  return buffer + "</div>\n<div id=\"right-pane\" class=\"col-sm-9\">\n</div>";
+  buffer += "</div>\n<div id=\"right-pane\" class=\"col-sm-8\">\n";
+  stack1 = this.invokePartial(partials['post-instructions'], '    ', 'post-instructions', depth0, undefined, helpers, partials, data);
+  if (stack1 != null) { buffer += stack1; }
+  return buffer + "</div>";
 },"usePartial":true,"useData":true});
 templates['tag'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
   var lambda=this.lambda, escapeExpression=this.escapeExpression;

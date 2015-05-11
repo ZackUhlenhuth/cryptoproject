@@ -4,14 +4,47 @@ body {
     background-color: #eee;
     padding-top: 70px;
 
-    .post-min, .post-full {
-        background-color: #fff;
-        padding: 10px;
-        margin: 5px;
+    // login
+    #login {
+      margin: 0 auto;
+      background: #333;
+      padding: 30px 20px;
+      width: 340px;
+      text-align: center;
+
+      h1 {
+        margin: 20px auto;
+        color: #fff;
+      }
+
+      h5 {
+        margin-bottom: 20px;
+        color: #ddd;
+        font-style: italic;
+      }
+
+      .login-input {
+        border-radius: 0;
+      }
+
+      #login-btn, #signup-btn {
+        width: 140px;
+        border-radius: 0;
+      }
+
+      #signup-btn{
+        margin-right: 20px;
+      }
     }
 
-    #post-menu {
-      height: 100%;
+    .post-min, .post-full {
+        background-color: #fff;
+        padding: 5px 10px;
+        margin: 5px 10px;
+    }
+
+    #post-menu, .post-full {
+      height: 85vh;
       overflow: auto;
     }
 
@@ -24,9 +57,17 @@ body {
       border-radius: 5px;
     }
 
+    #default-post {
+      .blurry-text {
+        color: transparent;
+        text-shadow: 0 0 5px rgba(0,0,0,0.5);
+      }
+    }
+
     .subtext {
-        color: #bbb;
-        font-size: .8em;
+      margin-top: 10px;
+      color: #bbb;
+      font-size: .8em;
     }
 
     #editor-container, #editor {

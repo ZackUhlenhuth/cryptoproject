@@ -1,18 +1,36 @@
 extends layout
 
+block header
+  script(type="text/javascript" src="/javascripts/users.js")
+  script(type = 'text/javascript').
+    var csrf=!{JSON.stringify(csrf)};
+
+
 block content
   .container
-    div.header
-      ul.nav.nav-pills.pull-right
-        li.active
-          a(href="#") Home
-        li
-          a(href="/login") Sign In 
-      h3.text-muted CryptoBook
+    div#login
+      h1 CryptoBook
+      h5 A Secure Encrypted Blog
+      form(action="/login", method="post")#loginForm
+        .form-group
+          input#username.form-control.login-input(name="username", placeholder="Username")
+        .form-group
+          input#password.form-control.login-input(name="password", type="password", placeholder="Password")
+        button#signup-btn.btn Signup
+        button(type="submit")#login-btn.btn Login
 
-    #descrwription.jumbotron
-      h1#webTitle CryptoBook 
-      p a secure encrypted blog
 
-    div.footer
-      p CryptoBook, April 2015
+    //- div.header
+    //-   ul.nav.nav-pills.pull-right
+    //-     li.active
+    //-       a(href="#") Home
+    //-     li
+    //-       a(href="/login") Sign In 
+    //-   h3.text-muted CryptoBook
+
+    //- #descrwription.jumbotron
+    //-   h1#webTitle CryptoBook 
+    //-   p a secure encrypted blog
+
+    //- div.footer
+    //-   p CryptoBook, April 2015

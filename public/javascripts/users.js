@@ -1,12 +1,30 @@
 (function() {
     $(document).ready(function() {
-        $("#loginButton").on("click", function() {
-            console.log("click");
+        $("#loginForm").on("submit", function(e) {
+            e.preventDefault();
+        });
+
+        $("#password").on("keydown", function(e) {
+            if (e.keyCode == 13) {
+                login("/login");
+            }
+        })
+
+        $("#login-btn").on("click", function(e) {
+            e.preventDefault();
+            login("/login");
+        });
+
+        $("#submit-btn").on("click", function(e) {
+            e.preventDefault();
+            login("/signup");
+        });
+
+        function login(route) {
             var formData = getFormData('#loginForm');
             formData._csrf = csrf;
-            console.log(formData);
             $.ajax({
-                url: "/login/",
+                url: route,
                 type: 'POST',
                 data: formData,
                 success: function(data) {
@@ -16,6 +34,6 @@
                     console.log(jqXHR.responseText);
                 }
             });
-        })
+        }
     })
 })();
