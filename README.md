@@ -10,9 +10,7 @@
 
 ## Running Locally
 
-Dependencies
-- Node.js
-- MongoDB
+CryptoBook runs on Node.js and MongoDB.
 
     git clone https://github.com/ZackUhlenhuth/cryptoproject
     npm install
